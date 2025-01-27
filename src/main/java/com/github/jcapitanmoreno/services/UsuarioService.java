@@ -1,7 +1,9 @@
 package com.github.jcapitanmoreno.services;
 
+import com.github.jcapitanmoreno.connection.Connection;
 import com.github.jcapitanmoreno.dao.UsuarioDao;
 import com.github.jcapitanmoreno.entities.Usuario;
+import org.hibernate.Session;
 
 import java.util.List;
 
@@ -42,5 +44,12 @@ public class UsuarioService {
             throw new Exception("El ID del usuario no es válido");
         }
         usuarioDao.deleteUsuario(id);
+    }
+
+    public Usuario getUsuarioByEmailAndPassword(String email, String password) throws Exception {
+        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
+            throw new Exception("El correo y la contraseña no pueden estar vacíos");
+        }
+        return usuarioDao.getUsuarioByEmailAndPassword(email, password);
     }
 }

@@ -13,9 +13,9 @@ public class Test_Usuarios {
         try {
             // Crear un nuevo usuario
             Usuario nuevoUsuario = new Usuario();
-            nuevoUsuario.setNombre("LOLO");
+            nuevoUsuario.setNombre("lala");
             nuevoUsuario.setContraseña("1234");
-            nuevoUsuario.setEmail("LOLO@gmail.com");
+            nuevoUsuario.setEmail("lala@gmail.com");
             nuevoUsuario.setFechaRegistro(Instant.now());
             usuarioService.addUsuario(nuevoUsuario);
             System.out.println("Usuario añadido: " + nuevoUsuario);
@@ -33,8 +33,8 @@ public class Test_Usuarios {
             System.out.println("Todos los usuarios: " + usuarioService.getAllUsuarios());
 
             // Eliminar el usuario
-           usuarioService.deleteUsuario(usuarioObtenido.getId());
-           System.out.println("Usuario eliminado");
+           //usuarioService.deleteUsuario(usuarioObtenido.getId());
+           //System.out.println("Usuario eliminado");
 
         } catch (Exception e) {
             e.printStackTrace();

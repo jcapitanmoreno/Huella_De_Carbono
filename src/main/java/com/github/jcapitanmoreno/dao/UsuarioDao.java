@@ -13,20 +13,20 @@ public class UsuarioDao {
         Transaction transaction = session.beginTransaction();
         session.save(usuario);
         transaction.commit();
-        session.close();
+        Connection.getInstance().close();
     }
 
     public Usuario getUsuario(int id) {
         Session session = Connection.getInstance().getSessionFactory();
         Usuario usuario = session.get(Usuario.class, id);
-        session.close();
+        Connection.getInstance().close();
         return usuario;
     }
 
     public List<Usuario> getAllUsuarios() {
         Session session = Connection.getInstance().getSessionFactory();
         List<Usuario> usuarios = session.createQuery("from Usuario", Usuario.class).list();
-        session.close();
+        Connection.getInstance().close();
         return usuarios;
     }
 
@@ -35,7 +35,7 @@ public class UsuarioDao {
         Transaction transaction = session.beginTransaction();
         session.update(usuario);
         transaction.commit();
-        session.close();
+        Connection.getInstance().close();
     }
 
     public void deleteUsuario(int id) {
@@ -46,7 +46,16 @@ public class UsuarioDao {
             session.delete(usuario);
         }
         transaction.commit();
-        session.close();
+        Connection.getInstance().close();
+    }
+
+    public Usuario getUsuarioByEmailAndPassword(String email, String password) {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            return session.createQuery("FROM Usuario WHERE email = :email AND contraseña = :password", Usuario.class)
+                    .setParameter("email", email)
+                    .setParameter("password", password)
+                    .uniqueResult();
+        }
     }
 
 

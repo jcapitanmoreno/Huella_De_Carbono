@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -90,4 +91,26 @@ public class Usuario {
         this.huellas = huellas;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(email, usuario.email) && Objects.equals(contraseña, usuario.contraseña);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, contraseña);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                '}';
+    }
 }
