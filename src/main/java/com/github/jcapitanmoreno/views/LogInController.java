@@ -2,6 +2,7 @@ package com.github.jcapitanmoreno.views;
 
 import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.UsuarioService;
+import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+import java.time.Instant;
 
 public class LogInController {
 
@@ -43,6 +45,7 @@ public class LogInController {
         nuevoUsuario.setNombre(nombre);
         nuevoUsuario.setEmail(email);
         nuevoUsuario.setContraseña(password);
+        nuevoUsuario.setFechaRegistro(Instant.now());
 
         try {
             usuarioService.addUsuario(nuevoUsuario);
@@ -60,6 +63,7 @@ public class LogInController {
         try {
             Usuario usuario = usuarioService.getUsuarioByEmailAndPassword(email, password);
             if (usuario != null) {
+                UsuarioSingleton.get_Instance().login(usuario);
                 showAlert(Alert.AlertType.INFORMATION, "Login Exitoso", "Bienvenido " + usuario.getNombre());
                 changeScene("secondary.fxml");
             } else {
