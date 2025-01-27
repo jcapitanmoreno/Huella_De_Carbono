@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="135.0" fitWidth="134.0" layoutX="284.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="284.0" AnchorPane.rightAnchor="283.3203125">
+         <image>
+            <Image url="@img/pngwing.com%20(1).png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="100.0" layoutY="192.0" />
+      <PasswordField layoutX="100.0" layoutY="258.0" />
+      <Text layoutX="100.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo" />
+      <Text layoutX="100.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
+      <TextField layoutX="417.0" layoutY="191.0" />
+      <TextField layoutX="417.0" layoutY="243.0" />
+      <PasswordField layoutX="417.0" layoutY="296.0" />
+      <Separator layoutX="347.0" layoutY="171.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Text layoutX="417.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
+      <Text layoutX="417.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo" />
+      <Text layoutX="417.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
+   </children>
+</AnchorPane>
