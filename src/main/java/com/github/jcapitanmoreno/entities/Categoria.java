@@ -77,4 +77,15 @@ public class Categoria {
         this.recomendacions = recomendacions;
     }
 
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", factorEmision=" + factorEmision +
+                ", unidad='" + unidad + '\'' +
+                ", actividads=" + actividads +
+                ", recomendacions=" + recomendacions +
+                '}';
+    }
 }

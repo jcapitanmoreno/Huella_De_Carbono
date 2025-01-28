@@ -13,20 +13,20 @@ public class HuellaDao {
         Transaction transaction = session.beginTransaction();
         session.save(huella);
         transaction.commit();
-        Connection.getInstance().close();
+        session.close();
     }
 
     public Huella getHuella(int id) {
         Session session = Connection.getInstance().getSessionFactory();
         Huella huella = session.get(Huella.class, id);
-        Connection.getInstance().close();
+        session.close();
         return huella;
     }
 
     public List<Huella> getAllHuellas() {
         Session session = Connection.getInstance().getSessionFactory();
         List<Huella> huellas = session.createQuery("from Huella", Huella.class).list();
-        Connection.getInstance().close();
+        session.close();
         return huellas;
     }
 
@@ -35,7 +35,7 @@ public class HuellaDao {
         Transaction transaction = session.beginTransaction();
         session.update(huella);
         transaction.commit();
-        Connection.getInstance().close();
+        session.close();
     }
 
     public void deleteHuella(int id) {
@@ -46,6 +46,6 @@ public class HuellaDao {
             session.delete(huella);
         }
         transaction.commit();
-        Connection.getInstance().close();
+        session.close();
     }
 }

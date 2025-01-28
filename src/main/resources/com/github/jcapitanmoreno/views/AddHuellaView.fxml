@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.github.jcapitanmoreno.views.AddHuellaView"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.AddHuellaController">
 
+    <children>
+        <Label layoutX="50.0" layoutY="50.0" text="Valor:" />
+        <TextField fx:id="valorField" layoutX="150.0" layoutY="50.0" />
+
+        <Label layoutX="50.0" layoutY="100.0" text="Unidad:" />
+        <TextField fx:id="unidadField" layoutX="150.0" layoutY="100.0" />
+
+        <Label layoutX="50.0" layoutY="150.0" text="Usuario:" />
+        <ComboBox fx:id="usuarioComboBox" layoutX="150.0" layoutY="150.0" />
+
+        <Label layoutX="50.0" layoutY="200.0" text="Actividad:" />
+        <ComboBox fx:id="actividadComboBox" layoutX="150.0" layoutY="200.0" />
+
+        <Button layoutX="150.0" layoutY="250.0" onAction="#handleAddHuella" text="Añadir Huella" />
+      <Button layoutX="24.0" layoutY="354.0" mnemonicParsing="false" text="volver" />
+    </children>
 </AnchorPane>
