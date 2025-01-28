@@ -13,31 +13,27 @@ public class UsuarioDao {
         Transaction transaction = session.beginTransaction();
         session.save(usuario);
         transaction.commit();
-        Connection.getInstance().close();
+        session.close();
     }
-
     public Usuario getUsuario(int id) {
         Session session = Connection.getInstance().getSessionFactory();
         Usuario usuario = session.get(Usuario.class, id);
-        Connection.getInstance().close();
+        session.close();
         return usuario;
     }
-
     public List<Usuario> getAllUsuarios() {
         Session session = Connection.getInstance().getSessionFactory();
         List<Usuario> usuarios = session.createQuery("from Usuario", Usuario.class).list();
-        Connection.getInstance().close();
+        session.close();
         return usuarios;
     }
-
     public void updateUsuario(Usuario usuario) {
         Session session = Connection.getInstance().getSessionFactory();
         Transaction transaction = session.beginTransaction();
         session.update(usuario);
         transaction.commit();
-        Connection.getInstance().close();
+        session.close();
     }
-
     public void deleteUsuario(int id) {
         Session session = Connection.getInstance().getSessionFactory();
         Transaction transaction = session.beginTransaction();
@@ -46,7 +42,7 @@ public class UsuarioDao {
             session.delete(usuario);
         }
         transaction.commit();
-        Connection.getInstance().close();
+        session.close();
     }
 
     public Usuario getUsuarioByEmailAndPassword(String email, String password) {

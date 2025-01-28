@@ -1,5 +1,6 @@
 package com.github.jcapitanmoreno.test;
 
+import com.github.jcapitanmoreno.connection.Connection;
 import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.UsuarioService;
 
@@ -10,12 +11,13 @@ public class Test_Usuarios {
     public static void main(String[] args) {
         UsuarioService usuarioService = new UsuarioService();
 
+
         try {
             // Crear un nuevo usuario
             Usuario nuevoUsuario = new Usuario();
             nuevoUsuario.setNombre("lala");
             nuevoUsuario.setContraseña("1234");
-            nuevoUsuario.setEmail("lala@gmail.com");
+            nuevoUsuario.setEmail("adfdadadfcfsdsd@gmail.com");
             nuevoUsuario.setFechaRegistro(Instant.now());
             usuarioService.addUsuario(nuevoUsuario);
             System.out.println("Usuario añadido: " + nuevoUsuario);
@@ -25,7 +27,7 @@ public class Test_Usuarios {
             System.out.println("Usuario obtenido: " + usuarioObtenido);
 
             // Actualizar el usuario
-            usuarioObtenido.setNombre("Juan Perez Actualizado");
+            usuarioObtenido.setNombre("lala perez");
             usuarioService.updateUsuario(usuarioObtenido);
             System.out.println("Usuario actualizado: " + usuarioObtenido);
 
@@ -35,6 +37,7 @@ public class Test_Usuarios {
             // Eliminar el usuario
            //usuarioService.deleteUsuario(usuarioObtenido.getId());
            //System.out.println("Usuario eliminado");
+
 
         } catch (Exception e) {
             e.printStackTrace();

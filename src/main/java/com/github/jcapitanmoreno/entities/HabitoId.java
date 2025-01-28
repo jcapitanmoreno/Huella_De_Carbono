@@ -45,4 +45,11 @@ public class HabitoId implements java.io.Serializable {
         return Objects.hash(idActividad, idUsuario);
     }
 
+    @Override
+    public String toString() {
+        return "HabitoId{" +
+                "idUsuario=" + idUsuario +
+                ", idActividad=" + idActividad +
+                '}';
+    }
 }
