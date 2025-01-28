@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "huella", schema = "carbono")
@@ -80,4 +81,27 @@ public class Huella {
         this.fecha = fecha;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Huella huella = (Huella) o;
+        return Objects.equals(id, huella.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Huella{" +
+                "id=" + id +
+                ", idUsuario=" + idUsuario +
+                ", idActividad=" + idActividad +
+                ", valor=" + valor +
+                ", unidad='" + unidad + '\'' +
+                ", fecha=" + fecha +
+                '}';
+    }
 }

@@ -28,9 +28,9 @@ public class Connection {
     public Session getSessionFactory() {
         return sessionFactory.openSession();
     }
-    public void close() {
 
-        if (_instance != null && sessionFactory.isOpen()) {
+    public void close() {
+        if (sessionFactory != null && !sessionFactory.isClosed()) {
             sessionFactory.close();
         }
     }

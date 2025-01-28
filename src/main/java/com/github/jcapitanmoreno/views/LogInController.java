@@ -65,7 +65,7 @@ public class LogInController {
             if (usuario != null) {
                 UsuarioSingleton.get_Instance().login(usuario);
                 showAlert(Alert.AlertType.INFORMATION, "Login Exitoso", "Bienvenido " + usuario.getNombre());
-                changeScene("secondary.fxml");
+                changeScene("InicioView.fxml");
             } else {
                 showAlert(Alert.AlertType.ERROR, "Error de Login", "Correo o contraseña incorrectos.");
             }
