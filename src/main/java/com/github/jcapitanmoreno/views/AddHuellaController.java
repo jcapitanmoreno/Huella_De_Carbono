@@ -60,18 +60,45 @@ public class AddHuellaController {
     @FXML
     private void handleAddHuella() {
         try {
-            BigDecimal valor = new BigDecimal(valorField.getText());
-            String unidad = unidadField.getText();
-            Actividad actividad = actividadComboBox.getValue();
-            LocalDate fecha = fechaPicker.getValue();
+            String valorText = valorField.getText();
+            if (valorText == null || valorText.trim().isEmpty()) {
+                showAlert("Error", "El valor es obligatorio.");
+                return;
+            }
 
+            BigDecimal valor;
+            try {
+                valor = new BigDecimal(valorText);
+            } catch (NumberFormatException e) {
+                showAlert("Error", "El valor debe ser un número válido.");
+                return;
+            }
+
+            if (valor.compareTo(BigDecimal.ZERO) <= 0) {
+                showAlert("Error", "El valor debe ser mayor que cero.");
+                return;
+            }
+
+            String unidad = unidadField.getText();
+            if (unidad == null || unidad.trim().isEmpty()) {
+                showAlert("Error", "La unidad es obligatoria.");
+                return;
+            }
+
+            Actividad actividad = actividadComboBox.getValue();
             if (actividad == null) {
                 showAlert("Error", "Actividad es obligatoria.");
                 return;
             }
 
+            LocalDate fecha = fechaPicker.getValue();
             if (fecha == null) {
                 showAlert("Error", "Fecha es obligatoria.");
+                return;
+            }
+
+            if (fecha.isAfter(LocalDate.now())) {
+                showAlert("Error", "La fecha no puede ser posterior a la fecha actual.");
                 return;
             }
 
