@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.AddHuellaController">
 
     <children>
@@ -13,15 +14,12 @@
         <TextField fx:id="valorField" layoutX="150.0" layoutY="50.0" />
 
         <Label layoutX="50.0" layoutY="100.0" text="Unidad:" />
-        <TextField fx:id="unidadField" layoutX="150.0" layoutY="100.0" />
-
-        <Label layoutX="50.0" layoutY="150.0" text="Usuario:" />
-        <ComboBox fx:id="usuarioComboBox" layoutX="150.0" layoutY="150.0" />
+        <TextField fx:id="unidadField" layoutX="150.0" layoutY="100.0" editable="false" />
 
         <Label layoutX="50.0" layoutY="200.0" text="Actividad:" />
-        <ComboBox fx:id="actividadComboBox" layoutX="150.0" layoutY="200.0" />
+        <ComboBox fx:id="actividadComboBox" layoutX="150.0" layoutY="200.0" onAction="#handleActividadChange" />
 
         <Button layoutX="150.0" layoutY="250.0" onAction="#handleAddHuella" text="Añadir Huella" />
-      <Button layoutX="24.0" layoutY="354.0" mnemonicParsing="false" text="volver" />
+        <Button layoutX="24.0" layoutY="354.0" mnemonicParsing="false" text="volver" />
     </children>
 </AnchorPane>
