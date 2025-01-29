@@ -11,10 +11,13 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 public class AddHuellaController {
@@ -26,6 +29,9 @@ public class AddHuellaController {
 
     @FXML
     private ComboBox<Actividad> actividadComboBox;
+
+    @FXML
+    private DatePicker fechaPicker;
 
     private HuellaService huellaService;
     private ActividadService actividadService;
@@ -57,16 +63,24 @@ public class AddHuellaController {
             BigDecimal valor = new BigDecimal(valorField.getText());
             String unidad = unidadField.getText();
             Actividad actividad = actividadComboBox.getValue();
+            LocalDate fecha = fechaPicker.getValue();
 
             if (actividad == null) {
                 showAlert("Error", "Actividad es obligatoria.");
                 return;
             }
 
+            if (fecha == null) {
+                showAlert("Error", "Fecha es obligatoria.");
+                return;
+            }
+
+            Instant fechaInstant = fecha.atStartOfDay(ZoneId.systemDefault()).toInstant();
+
             Huella nuevaHuella = new Huella();
             nuevaHuella.setValor(valor);
             nuevaHuella.setUnidad(unidad);
-            nuevaHuella.setFecha(Instant.now());
+            nuevaHuella.setFecha(fechaInstant);
             nuevaHuella.setIdUsuario(UsuarioSingleton.get_Instance().getPlayerLoged());
             nuevaHuella.setIdActividad(actividad);
 
