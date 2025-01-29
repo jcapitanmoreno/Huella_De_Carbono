@@ -25,28 +25,30 @@ public class AddHuellaController {
     private TextField unidadField;
 
     @FXML
-    private ComboBox<Usuario> usuarioComboBox;
-
-    @FXML
     private ComboBox<Actividad> actividadComboBox;
 
     private HuellaService huellaService;
-    private UsuarioService usuarioService;
     private ActividadService actividadService;
 
     public AddHuellaController() {
         huellaService = new HuellaService();
-        usuarioService = new UsuarioService();
         actividadService = new ActividadService();
     }
 
     @FXML
     public void initialize() {
-        List<Usuario> usuarios = usuarioService.getAllUsuarios();
-        usuarioComboBox.setItems(FXCollections.observableArrayList(usuarios));
-
         List<Actividad> actividades = actividadService.getAllActividades();
         actividadComboBox.setItems(FXCollections.observableArrayList(actividades));
+    }
+
+    @FXML
+    private void handleActividadChange() {
+        Actividad actividad = actividadComboBox.getValue();
+        if (actividad != null) {
+            unidadField.setText(actividad.getIdCategoria().getUnidad());
+        } else {
+            unidadField.clear();
+        }
     }
 
     @FXML
@@ -54,11 +56,10 @@ public class AddHuellaController {
         try {
             BigDecimal valor = new BigDecimal(valorField.getText());
             String unidad = unidadField.getText();
-            Usuario usuario = usuarioComboBox.getValue();
             Actividad actividad = actividadComboBox.getValue();
 
-            if (usuario == null || actividad == null) {
-                showAlert("Error", "Usuario y Actividad son obligatorios.");
+            if (actividad == null) {
+                showAlert("Error", "Actividad es obligatoria.");
                 return;
             }
 
