@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.UserProfileController">
+    <VBox alignment="TOP_CENTER" spacing="10" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <TextField fx:id="nameField" onAction="#updateName" promptText="Nombre" />
+        <TextField fx:id="emailField" editable="false" promptText="Email" />
+        <TableView fx:id="footprintTable" prefHeight="200.0" prefWidth="580.0">
+            <columns>
+                <TableColumn fx:id="usernameColumn" text="Nombre de Usuario" />
+                <TableColumn fx:id="activityColumn" text="Nombre de la Actividad" />
+                <TableColumn fx:id="valueColumn" text="Valor" />
+                <TableColumn fx:id="unitColumn" text="Unidad" />
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

@@ -44,4 +44,8 @@ public class HuellaService {
         }
         huellaDao.deleteHuella(id);
     }
+
+    public List<Huella> getHuellasByUsuario(int usuarioId) {
+        return huellaDao.getHuellasByUsuario(usuarioId);
+    }
 }
