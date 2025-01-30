@@ -48,4 +48,12 @@ public class HuellaDao {
         transaction.commit();
         session.close();
     }
+
+    public List<Huella> getHuellasByUsuario(int usuarioId) {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            return session.createQuery("FROM Huella WHERE idUsuario.id = :usuarioId", Huella.class)
+                    .setParameter("usuarioId", usuarioId)
+                    .list();
+        }
+    }
 }
