@@ -50,4 +50,22 @@ public class HabitoDao {
         session.close();
     }
 
+    public List<Habito> getHabitosByUsuario(int usuarioId) {
+        Transaction transaction = null;
+        List<Habito> habitos = null;
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            transaction = session.beginTransaction();
+            habitos = session.createQuery("FROM Habito WHERE idUsuario.id = :usuarioId", Habito.class)
+                    .setParameter("usuarioId", usuarioId)
+                    .list();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return habitos;
+    }
+
 }

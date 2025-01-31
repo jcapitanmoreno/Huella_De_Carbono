@@ -1,7 +1,9 @@
 package com.github.jcapitanmoreno.views;
 
+import com.github.jcapitanmoreno.entities.Habito;
 import com.github.jcapitanmoreno.entities.Huella;
 import com.github.jcapitanmoreno.entities.Usuario;
+import com.github.jcapitanmoreno.services.HabitoService;
 import com.github.jcapitanmoreno.services.HuellaService;
 import com.github.jcapitanmoreno.services.UsuarioService;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
@@ -28,62 +30,71 @@ public class UserProfileController {
     private TextField emailField;
 
     @FXML
-    private TableView<Huella> footprintTable;
+    private TableView<Object> footprintTable;
 
     @FXML
-    private TableColumn<Huella, String> usernameColumn;
+    private TableColumn<Object, String> usernameColumn;
 
     @FXML
-    private TableColumn<Huella, String> activityColumn;
+    private TableColumn<Object, String> activityColumn;
 
     @FXML
-    private TableColumn<Huella, Double> valueColumn;
+    private TableColumn<Object, String> valueColumn;
 
     @FXML
-    private TableColumn<Huella, String> unitColumn;
+    private TableColumn<Object, String> unitColumn;
 
     private UsuarioService usuarioService;
     private HuellaService huellaService;
+    private HabitoService habitoService;
+
+    private boolean showingHuellas = true;
 
     public void initialize() {
         usuarioService = new UsuarioService();
         huellaService = new HuellaService();
+        habitoService = new HabitoService();
 
-        footprintTable.setEditable(true); // Asegúrate de que la tabla sea editable
+        footprintTable.setEditable(true);
 
         usernameColumn.setCellValueFactory(cellData -> {
-            Huella huella = cellData.getValue();
-            return new SimpleStringProperty(huella.getIdUsuario().getNombre());
+            if (cellData.getValue() instanceof Huella) {
+                Huella huella = (Huella) cellData.getValue();
+                return new SimpleStringProperty(huella.getIdUsuario().getNombre());
+            } else {
+                Habito habito = (Habito) cellData.getValue();
+                return new SimpleStringProperty(habito.getIdUsuario().getNombre());
+            }
         });
 
         activityColumn.setCellValueFactory(cellData -> {
-            Huella huella = cellData.getValue();
-            return new SimpleStringProperty(huella.getIdActividad().getNombre());
+            if (cellData.getValue() instanceof Huella) {
+                Huella huella = (Huella) cellData.getValue();
+                return new SimpleStringProperty(huella.getIdActividad().getNombre());
+            } else {
+                Habito habito = (Habito) cellData.getValue();
+                return new SimpleStringProperty(habito.getIdActividad().getNombre());
+            }
         });
 
         valueColumn.setCellValueFactory(cellData -> {
-            Huella huella = cellData.getValue();
-            return new SimpleObjectProperty<>(huella.getValor().doubleValue());
-        });
-
-        valueColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        valueColumn.setOnEditCommit(event -> {
-            Huella huella = event.getRowValue();
-            try {
-                BigDecimal nuevoValor = new BigDecimal(event.getNewValue().toString());
-                huella.setValor(nuevoValor);
-                huellaService.updateHuella(huella);
-                System.out.println("Valor actualizado a: " + nuevoValor);
-            } catch (NumberFormatException e) {
-                System.out.println("Error al convertir el valor a BigDecimal: " + event.getNewValue());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (cellData.getValue() instanceof Huella) {
+                Huella huella = (Huella) cellData.getValue();
+                return new SimpleStringProperty(huella.getValor().toString());
+            } else {
+                Habito habito = (Habito) cellData.getValue();
+                return new SimpleStringProperty(String.valueOf(habito.getFrecuencia()));
             }
         });
 
         unitColumn.setCellValueFactory(cellData -> {
-            Huella huella = cellData.getValue();
-            return new SimpleStringProperty(huella.getUnidad());
+            if (cellData.getValue() instanceof Huella) {
+                Huella huella = (Huella) cellData.getValue();
+                return new SimpleStringProperty(huella.getUnidad());
+            } else {
+                Habito habito = (Habito) cellData.getValue();
+                return new SimpleStringProperty(habito.getTipo());
+            }
         });
 
         loadUserData();
@@ -101,8 +112,18 @@ public class UserProfileController {
     private void loadFootprintData() {
         Usuario usuario = UsuarioSingleton.get_Instance().getPlayerLoged();
         if (usuario != null) {
-            footprintTable.getItems().setAll(huellaService.getHuellasByUsuario(usuario.getId()));
+            if (showingHuellas) {
+                footprintTable.getItems().setAll(huellaService.getHuellasByUsuario(usuario.getId()));
+            } else {
+                footprintTable.getItems().setAll(habitoService.getHabitosByUsuario(usuario.getId()));
+            }
         }
+    }
+
+    @FXML
+    private void handleChangeView() {
+        showingHuellas = !showingHuellas;
+        loadFootprintData();
     }
 
     @FXML
@@ -112,19 +133,6 @@ public class UserProfileController {
             usuario.setNombre(nameField.getText());
             try {
                 usuarioService.updateUsuario(usuario);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @FXML
-    private void updateValue() {
-        Huella selectedHuella = footprintTable.getSelectionModel().getSelectedItem();
-        if (selectedHuella != null) {
-            selectedHuella.setValor(new BigDecimal(valueColumn.getText()));
-            try {
-                huellaService.updateHuella(selectedHuella);
             } catch (Exception e) {
                 e.printStackTrace();
             }

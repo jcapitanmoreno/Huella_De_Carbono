@@ -45,4 +45,14 @@ public class HabitoService {
         }
         habitoDao.deleteHabito(id);
     }
+
+    public List<Habito> getHabitosByUsuario(int usuarioId) {
+        if (usuarioId <= 0) {
+            throw new IllegalArgumentException("El ID del usuario no es válido");
+        }
+        return habitoDao.getHabitosByUsuario(usuarioId);
+    }
+
 }
+
+
