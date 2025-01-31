@@ -66,7 +66,7 @@ public class LogInController {
             if (usuario != null) {
                 UsuarioSingleton.get_Instance().login(usuario);
                 Alertas.showInfoAlert("Login Exitoso", "Una EcoBienvenida", "Bienvenido " + usuario.getNombre());
-                changeScene("UserProfileView.fxml");
+                changeScene("HuellaMenuView.fxml");
             } else {
                 Alertas.showErrorAlert("Error de Login", "Correo o contraseña incorrectos.", "Correo o contraseña incorrectos.");
             }
