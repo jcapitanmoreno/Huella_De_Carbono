@@ -1,9 +1,9 @@
 package com.github.jcapitanmoreno.services;
 
-import com.github.jcapitanmoreno.connection.Connection;
+
 import com.github.jcapitanmoreno.dao.UsuarioDao;
 import com.github.jcapitanmoreno.entities.Usuario;
-import org.hibernate.Session;
+
 
 import java.util.List;
 
