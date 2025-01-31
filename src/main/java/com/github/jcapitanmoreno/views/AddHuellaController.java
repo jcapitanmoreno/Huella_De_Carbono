@@ -2,10 +2,9 @@ package com.github.jcapitanmoreno.views;
 
 import com.github.jcapitanmoreno.entities.Actividad;
 import com.github.jcapitanmoreno.entities.Huella;
-import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.ActividadService;
 import com.github.jcapitanmoreno.services.HuellaService;
-import com.github.jcapitanmoreno.services.UsuarioService;
+import com.github.jcapitanmoreno.utils.Alertas;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -62,7 +61,8 @@ public class AddHuellaController {
         try {
             String valorText = valorField.getText();
             if (valorText == null || valorText.trim().isEmpty()) {
-                showAlert("Error", "El valor es obligatorio.");
+                Alertas.showErrorAlert("Error", "Error 010", "El valor es obligatorio.");
+
                 return;
             }
 
@@ -70,35 +70,36 @@ public class AddHuellaController {
             try {
                 valor = new BigDecimal(valorText);
             } catch (NumberFormatException e) {
-                showAlert("Error", "El valor debe ser un número válido.");
+                Alertas.showErrorAlert("Error", "Error 011", "El valor debe ser un número válido.");
                 return;
             }
 
             if (valor.compareTo(BigDecimal.ZERO) <= 0) {
-                showAlert("Error", "El valor debe ser mayor que cero.");
+                Alertas.showErrorAlert("Error", "Error 012", "El valor debe ser mayor que cero.");
                 return;
             }
 
             String unidad = unidadField.getText();
             if (unidad == null || unidad.trim().isEmpty()) {
-                showAlert("Error", "La unidad es obligatoria.");
+                Alertas.showErrorAlert("Error", "Error 013", "La unidad es obligatoria.");
                 return;
             }
 
             Actividad actividad = actividadComboBox.getValue();
             if (actividad == null) {
-                showAlert("Error", "Actividad es obligatoria.");
+                Alertas.showErrorAlert("Error", "Error 014", "La actividad es obligatoria.");
                 return;
             }
 
             LocalDate fecha = fechaPicker.getValue();
             if (fecha == null) {
-                showAlert("Error", "Fecha es obligatoria.");
+                Alertas.showErrorAlert("Error", "Error 015", "Fecha es obligatoria.");
                 return;
             }
 
             if (fecha.isAfter(LocalDate.now())) {
-                showAlert("Error", "La fecha no puede ser posterior a la fecha actual.");
+                Alertas.showErrorAlert("Error", "Error 016", "La fecha no puede ser posterior a la fecha actual.");
+
                 return;
             }
 
@@ -112,18 +113,10 @@ public class AddHuellaController {
             nuevaHuella.setIdActividad(actividad);
 
             huellaService.addHuella(nuevaHuella);
-            showAlert("Éxito", "Huella añadida correctamente.");
+            Alertas.showInfoAlert("Éxito", "Huella añadida correctamente.", "Huella añadida correctamente.");
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Error", "No se pudo añadir la huella.");
+            Alertas.showErrorAlert("Error", "Error 017", "No se pudo añadir la huella.");
         }
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

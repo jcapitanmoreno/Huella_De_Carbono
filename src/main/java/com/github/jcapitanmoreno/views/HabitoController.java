@@ -5,6 +5,7 @@ import com.github.jcapitanmoreno.entities.Habito;
 import com.github.jcapitanmoreno.entities.HabitoId;
 import com.github.jcapitanmoreno.services.ActividadService;
 import com.github.jcapitanmoreno.services.HabitoService;
+import com.github.jcapitanmoreno.utils.Alertas;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -52,13 +53,13 @@ public class HabitoController {
         try {
             String tipo = tipoComboBox.getValue();
             if (tipo == null || tipo.trim().isEmpty()) {
-                showAlert("Error", "El tipo es obligatorio.");
+                Alertas.showErrorAlert("Error", "Error 003", "El tipo es obligatorio.");
                 return;
             }
 
             String frecuenciaText = frecuenciaField.getText();
             if (frecuenciaText == null || frecuenciaText.trim().isEmpty()) {
-                showAlert("Error", "La frecuencia es obligatoria.");
+                Alertas.showErrorAlert("Error", "Error 004", "La frecuencia es obligatoria.");
                 return;
             }
 
@@ -66,24 +67,24 @@ public class HabitoController {
             try {
                 frecuencia = Integer.parseInt(frecuenciaText);
             } catch (NumberFormatException e) {
-                showAlert("Error", "La frecuencia debe ser un número válido.");
+                Alertas.showErrorAlert("Error", "Error 005", "La frecuencia debe ser un número válido.");
                 return;
             }
 
             Actividad actividad = actividadComboBox.getValue();
             if (actividad == null) {
-                showAlert("Error", "Actividad es obligatoria.");
+                Alertas.showErrorAlert("Error", "Error 006", "La actividad es obligatoria.");
                 return;
             }
 
             LocalDate fecha = fechaPicker.getValue();
             if (fecha == null) {
-                showAlert("Error", "Fecha es obligatoria.");
+                Alertas.showErrorAlert("Error", "Error 007", "La fecha es obligatoria.");
                 return;
             }
 
             if (fecha.isAfter(LocalDate.now())) {
-                showAlert("Error", "La fecha no puede ser posterior a la fecha actual.");
+                Alertas.showErrorAlert("Error", "Error 008", "La fecha no puede ser posterior a la fecha actual.");
                 return;
             }
 
@@ -102,18 +103,10 @@ public class HabitoController {
             nuevoHabito.setId(habitoId);
 
             habitoService.addHabito(nuevoHabito);
-            showAlert("Éxito", "Hábito añadido correctamente.");
+            Alertas.showInfoAlert("Éxito", "Hábito añadido correctamente.", "Hábito añadido correctamente.");
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Error", "No se pudo añadir el hábito.");
+            Alertas.showErrorAlert("Error", "Error 009", "No se pudo añadir el hábito.");
         }
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

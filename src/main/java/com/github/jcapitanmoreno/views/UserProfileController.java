@@ -6,20 +6,13 @@ import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.HabitoService;
 import com.github.jcapitanmoreno.services.HuellaService;
 import com.github.jcapitanmoreno.services.UsuarioService;
+import com.github.jcapitanmoreno.utils.Alertas;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.BigDecimalStringConverter;
-import javafx.util.converter.DoubleStringConverter;
-import org.hibernate.mapping.Value;
-
-import java.math.BigDecimal;
 
 public class UserProfileController {
 
@@ -137,5 +130,11 @@ public class UserProfileController {
                 e.printStackTrace();
             }
         }
+    }
+    @FXML
+    private void showInfoAlert(){
+        Alertas.showInfoAlert("Información", "Información General", "Esta es la vista de perfil de usuario," +
+                " aquí puedes ver tus datos personales, tus huellas y hábitos." +
+                " Puedes cambiar entre huellas y hábitos con el botón de la parte inferior derecha.");
     }
 }

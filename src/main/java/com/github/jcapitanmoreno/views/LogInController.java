@@ -2,6 +2,7 @@ package com.github.jcapitanmoreno.views;
 
 import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.UsuarioService;
+import com.github.jcapitanmoreno.utils.Alertas;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,9 +50,9 @@ public class LogInController {
 
         try {
             usuarioService.addUsuario(nuevoUsuario);
-            showAlert(Alert.AlertType.INFORMATION, "Registro Exitoso", "Usuario registrado correctamente.");
+            Alertas.showInfoAlert("Registro Exitoso", "Usuario registrado correctamente.", "Usuario registrado correctamente.");
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error de Registro", e.getMessage());
+            Alertas.showErrorAlert("Error de Registro", "Error 505", e.getMessage());
         }
     }
 
@@ -64,22 +65,14 @@ public class LogInController {
             Usuario usuario = usuarioService.getUsuarioByEmailAndPassword(email, password);
             if (usuario != null) {
                 UsuarioSingleton.get_Instance().login(usuario);
-                showAlert(Alert.AlertType.INFORMATION, "Login Exitoso", "Bienvenido " + usuario.getNombre());
+                Alertas.showInfoAlert("Login Exitoso", "Una EcoBienvenida", "Bienvenido " + usuario.getNombre());
                 changeScene("UserProfileView.fxml");
             } else {
-                showAlert(Alert.AlertType.ERROR, "Error de Login", "Correo o contraseña incorrectos.");
+                Alertas.showErrorAlert("Error de Login", "Correo o contraseña incorrectos.", "Correo o contraseña incorrectos.");
             }
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error de Login", e.getMessage());
+            Alertas.showErrorAlert("Error de Login", "Error 707", e.getMessage());
         }
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     private void changeScene(String fxml) {

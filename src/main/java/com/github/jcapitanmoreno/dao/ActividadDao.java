@@ -3,7 +3,6 @@ package com.github.jcapitanmoreno.dao;
 import com.github.jcapitanmoreno.connection.Connection;
 import com.github.jcapitanmoreno.entities.Actividad;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.List;
 
