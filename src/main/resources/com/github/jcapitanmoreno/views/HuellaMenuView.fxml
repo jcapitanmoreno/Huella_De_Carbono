@@ -16,7 +16,7 @@
                 <TableColumn fx:id="unitColumn" prefWidth="131.0" text="Unidad" />
             </columns>
         </TableView>
-      <ImageView onMouseClicked="#handleDelete" fx:id="deleteImageView" fitHeight="45.0" fitWidth="51.0" layoutX="328.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deleteImageView" fitHeight="45.0" fitWidth="51.0" layoutX="328.0" layoutY="355.0" onMouseClicked="#handleDelete" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/borrar.png" />
          </image>
@@ -29,6 +29,16 @@
       <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="23.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/flecha-izquierda.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="28.0" layoutX="309.0" layoutY="355.0" onMouseClicked="#infoAlertDelete" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/informacion.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="28.0" layoutX="46.0" layoutY="126.0" onMouseClicked="#infoAlertUpdate" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/informacion.png" />
          </image>
       </ImageView>
     </children>
