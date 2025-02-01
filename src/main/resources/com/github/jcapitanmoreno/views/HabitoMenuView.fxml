@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.HabitoMenuController">
+    <TableView fx:id="habitoTable" layoutX="68.0" layoutY="126.0" prefHeight="208.0" prefWidth="565.0">
+        <columns>
+            <TableColumn fx:id="usernameColumn" prefWidth="117.0" text="Usuario" />
+            <TableColumn fx:id="activityColumn" prefWidth="256.0" text="Actividad" />
+            <TableColumn fx:id="frequencyColumn" prefWidth="111.0" text="Frecuencia" />
+            <TableColumn fx:id="typeColumn" prefWidth="78.0" text="Tipo" />
+        </columns>
+    </TableView>
+    <ImageView fx:id="deleteImageView" fitHeight="45.0" fitWidth="51.0" layoutX="328.0" layoutY="355.0" onMouseClicked="#handleDelete" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@img/borrar.png" />
+        </image>
+    </ImageView>
+   <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="633.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@img/agregar-archivo.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="23.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@img/flecha-izquierda.png" />
+      </image>
+   </ImageView>
+</AnchorPane>

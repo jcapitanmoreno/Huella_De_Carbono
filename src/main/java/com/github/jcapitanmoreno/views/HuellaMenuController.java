@@ -14,7 +14,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
-import javafx.util.converter.BigDecimalStringConverter;
 import javafx.util.converter.DoubleStringConverter;
 
 import java.math.BigDecimal;
@@ -90,4 +89,21 @@ public class HuellaMenuController {
             }
         }
     }
+    @FXML
+    private void infoAlertDelete() {
+        Alertas.showInfoAlert("Huella eliminada", "Informacion General", "Para eliminar una huella " +
+                "selecciona la huella que deseas eliminar y pulsa el boton de la papelera " +
+                "que se encuentra en la parte inferior de la tabla " +
+                "y la huella sera eliminada. " +
+                "Recuerda que una vez eliminada no se podra recuperar.");
+    }
+
+    @FXML
+    private void infoAlertUpdate() {
+        Alertas.showInfoAlert("Huella actualizada", "Informacion General", "Para actualizar una huella " +
+                "selecciona la huella que deseas actualizar y modifica el dato llamdao valor en la tabla " +
+                "y la huella sera actualizada. " +
+                "Recuerda que una vez actualizada no se podra recuperar el valor anterior.");
+    }
+
 }
