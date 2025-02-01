@@ -3,6 +3,7 @@ package com.github.jcapitanmoreno.dao;
 import com.github.jcapitanmoreno.connection.Connection;
 import com.github.jcapitanmoreno.entities.Habito;
 import com.github.jcapitanmoreno.entities.HabitoId;
+import com.github.jcapitanmoreno.entities.Recomendacion;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -66,6 +67,19 @@ public class HabitoDao {
             e.printStackTrace();
         }
         return habitos;
+    }
+
+    public List<Recomendacion> getRecomendacionesByUsuario(int usuarioId) {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            return session.createQuery(
+                            "SELECT r FROM Habito h " +
+                                    "JOIN h.idActividad a " +
+                                    "JOIN a.idCategoria c " +
+                                    "JOIN c.recomendacions r " +
+                                    "WHERE h.idUsuario.id = :usuarioId", Recomendacion.class)
+                    .setParameter("usuarioId", usuarioId)
+                    .list();
+        }
     }
 
 }

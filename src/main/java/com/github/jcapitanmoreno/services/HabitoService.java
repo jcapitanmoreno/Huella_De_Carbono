@@ -3,6 +3,7 @@ package com.github.jcapitanmoreno.services;
 import com.github.jcapitanmoreno.dao.HabitoDao;
 import com.github.jcapitanmoreno.entities.Habito;
 import com.github.jcapitanmoreno.entities.HabitoId;
+import com.github.jcapitanmoreno.entities.Recomendacion;
 
 import java.util.List;
 
@@ -51,6 +52,13 @@ public class HabitoService {
             throw new IllegalArgumentException("El ID del usuario no es válido");
         }
         return habitoDao.getHabitosByUsuario(usuarioId);
+    }
+
+    public List<Recomendacion> getRecomendacionesByUsuario(int usuarioId) {
+        if (usuarioId <= 0) {
+            throw new IllegalArgumentException("El ID del usuario no es válido");
+        }
+        return habitoDao.getRecomendacionesByUsuario(usuarioId);
     }
 
 }
