@@ -5,7 +5,13 @@ import com.github.jcapitanmoreno.entities.Huella;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class HuellaDao {
     public void addHuella(Huella huella) {
@@ -55,5 +61,88 @@ public class HuellaDao {
                     .setParameter("usuarioId", usuarioId)
                     .list();
         }
+    }
+    public Map<String, BigDecimal> getHuellaUsuarioPorCategoria(int usuarioId) {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            List<Object[]> results = session.createQuery(
+                            "SELECT a.idCategoria.nombre, SUM(h.valor * a.idCategoria.factorEmision) " +
+                                    "FROM Huella h JOIN h.idActividad a " +
+                                    "WHERE h.idUsuario.id = :usuarioId " +
+                                    "GROUP BY a.idCategoria.nombre", Object[].class)
+                    .setParameter("usuarioId", usuarioId)
+                    .list();
+
+            return results.stream().collect(Collectors.toMap(
+                    result -> (String) result[0],
+                    result -> (BigDecimal) result[1]
+            ));
+        }
+    }
+
+    public Map<String, BigDecimal> getMediaHuellasPorCategoria() {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            List<Object[]> results = session.createQuery(
+                            "SELECT a.idCategoria.nombre, AVG(h.valor * a.idCategoria.factorEmision) " +
+                                    "FROM Huella h JOIN h.idActividad a " +
+                                    "GROUP BY a.idCategoria.nombre", Object[].class)
+                    .list();
+
+            return results.stream().collect(Collectors.toMap(
+                    result -> (String) result[0],
+                    result -> BigDecimal.valueOf((Double) result[1])
+            ));
+        }
+    }
+
+    public Map<String, BigDecimal> getHuellaUsuarioPorCategoria(int usuarioId, String period) {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            String query = "SELECT a.idCategoria.nombre, SUM(h.valor * a.idCategoria.factorEmision) " +
+                    "FROM Huella h JOIN h.idActividad a " +
+                    "WHERE h.idUsuario.id = :usuarioId AND h.fecha >= :startDate " +
+                    "GROUP BY a.idCategoria.nombre";
+            List<Object[]> results = session.createQuery(query, Object[].class)
+                    .setParameter("usuarioId", usuarioId)
+                    .setParameter("startDate", getStartDate(period))
+                    .list();
+
+            return results.stream().collect(Collectors.toMap(
+                    result -> (String) result[0],
+                    result -> (BigDecimal) result[1]
+            ));
+        }
+    }
+
+    public Map<String, BigDecimal> getMediaHuellasPorCategoria(String period) {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            String query = "SELECT a.idCategoria.nombre, AVG(h.valor * a.idCategoria.factorEmision) " +
+                    "FROM Huella h JOIN h.idActividad a " +
+                    "WHERE h.fecha >= :startDate " +
+                    "GROUP BY a.idCategoria.nombre";
+            List<Object[]> results = session.createQuery(query, Object[].class)
+                    .setParameter("startDate", getStartDate(period))
+                    .list();
+
+            return results.stream().collect(Collectors.toMap(
+                    result -> (String) result[0],
+                    result -> BigDecimal.valueOf((Double) result[1])
+            ));
+        }
+    }
+
+    private Instant getStartDate(String period) {
+        Calendar calendar = Calendar.getInstance();
+        switch (period) {
+            case "Semana":
+                calendar.add(Calendar.WEEK_OF_YEAR, -1);
+                break;
+            case "Mes":
+                calendar.add(Calendar.MONTH, -1);
+                break;
+            case "Año":
+                calendar.add(Calendar.YEAR, -1);
+                break;
+        }
+        Date date = calendar.getTime();
+        return date.toInstant();
     }
 }

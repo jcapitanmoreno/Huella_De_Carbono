@@ -3,7 +3,9 @@ package com.github.jcapitanmoreno.services;
 import com.github.jcapitanmoreno.dao.HuellaDao;
 import com.github.jcapitanmoreno.entities.Huella;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 public class HuellaService {
 
@@ -47,5 +49,16 @@ public class HuellaService {
 
     public List<Huella> getHuellasByUsuario(int usuarioId) {
         return huellaDao.getHuellasByUsuario(usuarioId);
+    }
+
+    public Map<String, BigDecimal> getHuellaUsuarioPorCategoria(int usuarioId, String period) throws Exception {
+        if (usuarioId <= 0) {
+            throw new Exception("El ID del usuario no es válido");
+        }
+        return huellaDao.getHuellaUsuarioPorCategoria(usuarioId, period);
+    }
+
+    public Map<String, BigDecimal> getMediaHuellasPorCategoria(String period) {
+        return huellaDao.getMediaHuellasPorCategoria(period);
     }
 }
