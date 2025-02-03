@@ -38,7 +38,7 @@ public class LogInController {
     }
 
     @FXML
-    private void handleRegister(ActionEvent event) {
+    private void handleRegister() {
         String nombre = usuarioRegister.getText();
         String email = correoRegister.getText();
         String password = passwordRegister.getText();
@@ -58,7 +58,7 @@ public class LogInController {
     }
 
     @FXML
-    private void handleLogin(ActionEvent event) {
+    private void handleLogin() {
         String email = usuarioLogIn.getText();
         String password = passwordLogIn.getText();
 

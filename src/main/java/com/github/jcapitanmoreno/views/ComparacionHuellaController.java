@@ -1,20 +1,20 @@
 package com.github.jcapitanmoreno.views;
 
-import com.github.jcapitanmoreno.entities.Huella;
 import com.github.jcapitanmoreno.services.HuellaService;
+import com.github.jcapitanmoreno.utils.ChangeScene;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ComparacionHuellaController {
     @FXML
@@ -22,13 +22,16 @@ public class ComparacionHuellaController {
     @FXML
     private ComboBox<String> timePeriodComboBox;
 
+    @FXML
+    private ImageView flechaIzquierda;
+
     private HuellaService huellaService;
 
     public void initialize() {
         huellaService = new HuellaService();
         ObservableList<String> timePeriods = FXCollections.observableArrayList("Semana", "Mes", "Año");
         timePeriodComboBox.setItems(timePeriods);
-        timePeriodComboBox.setValue("Mes"); // Valor por defecto
+        timePeriodComboBox.setValue("Semana"); // esto sera lo primero que se setee en el combobox al abrir la pantalla
         timePeriodComboBox.setOnAction(event -> loadComparacion());
         loadComparacion();
     }
@@ -63,5 +66,11 @@ public class ComparacionHuellaController {
         }
 
         barChart.getData().addAll(seriesUsuario, seriesMedia);
+    }
+
+    @FXML
+    private void switchToInicioView() {
+        Stage stage = (Stage) flechaIzquierda.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/InicioView.fxml");
     }
 }

@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.InicioController">
    <children>
-      <Button fx:id="usuarioLogIn" layoutX="304.0" layoutY="411.0" mnemonicParsing="false" text="Cerrar Sesión" />      <ImageView fitHeight="98.0" fitWidth="100.0" layoutX="531.0" layoutY="282.0" onMouseClicked="#switchToHuellaMenuView" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="usuarioLogIn" layoutX="304.0" layoutY="411.0" mnemonicParsing="false" text="Cerrar Sesión" onAction="#switchToLogInView" />      <ImageView fitHeight="98.0" fitWidth="100.0" layoutX="531.0" layoutY="282.0" onMouseClicked="#switchToHuellaMenuView" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/Co2_change.png" />
          </image>

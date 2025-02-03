@@ -21,16 +21,16 @@
             <Image url="@img/borrar.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="633.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/agregar-archivo.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="23.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/flecha-izquierda.png" />
-         </image>
-      </ImageView>
+        <ImageView fx:id="flechaIzquierda" fitHeight="45.0" fitWidth="45.0" layoutX="23.0" layoutY="377.0" onMouseClicked="#switchToInicioView" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@img/flecha-izquierda.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="agregarArchivo" fitHeight="45.0" fitWidth="45.0" layoutX="633.0" layoutY="377.0" onMouseClicked="#switchToAddHuellaView" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@img/agregar-archivo.png" />
+            </image>
+        </ImageView>
       <ImageView fitHeight="19.0" fitWidth="28.0" layoutX="309.0" layoutY="355.0" onMouseClicked="#infoAlertDelete" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/informacion.png" />
