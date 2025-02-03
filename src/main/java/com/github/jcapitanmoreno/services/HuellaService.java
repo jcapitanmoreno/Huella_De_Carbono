@@ -22,17 +22,6 @@ public class HuellaService {
         huellaDao.addHuella(huella);
     }
 
-    public Huella getHuella(int id) throws Exception {
-        if (id <= 0) {
-            throw new Exception("El ID de la huella no es válido");
-        }
-        return huellaDao.getHuella(id);
-    }
-
-    public List<Huella> getAllHuellas() {
-        return huellaDao.getAllHuellas();
-    }
-
     public void updateHuella(Huella huella) throws Exception {
         if (huella.getId() <= 0) {
             throw new Exception("El ID de la huella no es válido");

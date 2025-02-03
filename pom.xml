@@ -34,6 +34,22 @@
             <version>8.0.33</version>
         </dependency>
 
+        <!-- dependencia de javafx para usar mas materiales diferentes -->
+
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>9.0.10</version>
+        </dependency>
+
+        <!-- dependencia de javafx para usar FXGL -->
+
+        <dependency>
+            <groupId>com.github.almasb</groupId>
+            <artifactId>fxgl</artifactId>
+            <version>21.1</version>
+        </dependency>
+
 
 
     </dependencies>

@@ -22,17 +22,6 @@ public class HabitoService {
         habitoDao.addHabito(habito);
     }
 
-    public Habito getHabito(HabitoId id) throws Exception {
-        if (id == null) {
-            throw new Exception("El ID del hábito no es válido");
-        }
-        return habitoDao.getHabito(id);
-    }
-
-    public List<Habito> getAllHabitos() {
-        return habitoDao.getAllHabitos();
-    }
-
     public void updateHabito(Habito habito) throws Exception {
         if (habito.getId() == null) {
             throw new Exception("El ID del hábito no es válido");
