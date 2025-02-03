@@ -46,10 +46,10 @@ public class UsuarioService {
         usuarioDao.deleteUsuario(id);
     }
 
-    public Usuario getUsuarioByEmailAndPassword(String email, String password) throws Exception {
-        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
-            throw new Exception("El correo y la contraseña no pueden estar vacíos");
+    public Usuario findUsuarioByEmail(String email) throws Exception {
+        if (email == null || email.isEmpty()) {
+            throw new Exception("El correo no puede estar vacío");
         }
-        return usuarioDao.getUsuarioByEmailAndPassword(email, password);
+        return usuarioDao.findUsuarioByEmail(email);
     }
 }

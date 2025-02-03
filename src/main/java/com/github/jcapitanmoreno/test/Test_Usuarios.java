@@ -35,8 +35,8 @@ public class Test_Usuarios {
             System.out.println("Todos los usuarios: " + usuarioService.getAllUsuarios());
 
             // Eliminar el usuario
-           //usuarioService.deleteUsuario(usuarioObtenido.getId());
-           //System.out.println("Usuario eliminado");
+           usuarioService.deleteUsuario(usuarioObtenido.getId());
+           System.out.println("Usuario eliminado");
 
 
         } catch (Exception e) {

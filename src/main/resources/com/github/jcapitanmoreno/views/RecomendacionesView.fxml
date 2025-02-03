@@ -12,4 +12,9 @@
          <Image url="@img/flecha-izquierda.png" />
       </image>
    </ImageView>
+   <ImageView fitHeight="149.0" fitWidth="423.0" layoutX="139.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@img/recomendaciones.png" />
+      </image>
+   </ImageView>
 </AnchorPane>

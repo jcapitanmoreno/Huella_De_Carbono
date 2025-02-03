@@ -4,6 +4,7 @@ import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.UsuarioService;
 import com.github.jcapitanmoreno.utils.Alertas;
 import com.github.jcapitanmoreno.utils.ChangeScene;
+import com.github.jcapitanmoreno.utils.PasswordUtils;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,10 +44,32 @@ public class LogInController {
         String email = correoRegister.getText();
         String password = passwordRegister.getText();
 
+        if (nombre.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Alertas.showWarningAlert("Validación", null, "Todos los campos son obligatorios para el registro.");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            Alertas.showWarningAlert("Validación", null, "El formato del correo electrónico no es válido.");
+            return;
+        }
+
+        if (nombre.length() < 3 || nombre.length() > 20) {
+            Alertas.showWarningAlert("Validación", null, "El nombre de usuario debe tener entre 3 y 20 caracteres.");
+            return;
+        }
+
+        if (password.length() < 6) {
+            Alertas.showWarningAlert("Validación", null, "La contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
+
+        String hashedPassword = PasswordUtils.hashPassword(password);
+
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setNombre(nombre);
         nuevoUsuario.setEmail(email);
-        nuevoUsuario.setContraseña(password);
+        nuevoUsuario.setContraseña(hashedPassword);
         nuevoUsuario.setFechaRegistro(Instant.now());
 
         try {
@@ -62,9 +85,21 @@ public class LogInController {
         String email = usuarioLogIn.getText();
         String password = passwordLogIn.getText();
 
+        if (email.isEmpty() || password.isEmpty()) {
+            Alertas.showWarningAlert("Validación", null, "El correo y la contraseña son obligatorios para iniciar sesión.");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            Alertas.showWarningAlert("Validación", null, "El formato del correo electrónico no es válido.");
+            return;
+        }
+
+        String hashedPassword = PasswordUtils.hashPassword(password);
+
         try {
-            Usuario usuario = usuarioService.getUsuarioByEmailAndPassword(email, password);
-            if (usuario != null) {
+            Usuario usuario = usuarioService.findUsuarioByEmail(email);
+            if (usuario != null && usuario.getContraseña().equals(hashedPassword)) {
                 UsuarioSingleton.get_Instance().login(usuario);
                 Alertas.showInfoAlert("Login Exitoso", "Una EcoBienvenida", "Bienvenido " + usuario.getNombre());
                 changeScene("InicioView.fxml");
@@ -79,5 +114,10 @@ public class LogInController {
     private void changeScene(String fxml) {
         Stage stage = (Stage) usuarioLogIn.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/" + fxml);
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailRegex);
     }
 }

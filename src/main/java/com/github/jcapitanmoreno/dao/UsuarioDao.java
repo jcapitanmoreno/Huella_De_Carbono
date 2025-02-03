@@ -54,5 +54,13 @@ public class UsuarioDao {
         }
     }
 
+    public Usuario findUsuarioByEmail(String email) {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            return session.createQuery("FROM Usuario WHERE email = :email", Usuario.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+        }
+    }
+
 
 }
