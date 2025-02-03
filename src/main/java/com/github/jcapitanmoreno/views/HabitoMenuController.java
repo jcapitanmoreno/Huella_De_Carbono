@@ -3,6 +3,7 @@ package com.github.jcapitanmoreno.views;
 import com.github.jcapitanmoreno.entities.Habito;
 import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.HabitoService;
+import com.github.jcapitanmoreno.utils.ChangeScene;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class HabitoMenuController {
     @FXML
@@ -30,6 +32,12 @@ public class HabitoMenuController {
 
     @FXML
     private ImageView deleteImageView;
+
+    @FXML
+    private ImageView flechaIzquierda;
+
+    @FXML
+    private ImageView agregarArchivo;
 
     private HabitoService habitoService;
 
@@ -64,5 +72,17 @@ public class HabitoMenuController {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    private void switchToInicioView() {
+        Stage stage = (Stage) flechaIzquierda.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/InicioView.fxml");
+    }
+
+    @FXML
+    private void switchToAddHabitoView() {
+        Stage stage = (Stage) agregarArchivo.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/AddHabitoView.fxml");
     }
 }

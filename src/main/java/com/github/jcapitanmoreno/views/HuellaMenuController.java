@@ -4,6 +4,7 @@ import com.github.jcapitanmoreno.entities.Huella;
 import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.HuellaService;
 import com.github.jcapitanmoreno.utils.Alertas;
+import com.github.jcapitanmoreno.utils.ChangeScene;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 
 import java.math.BigDecimal;
@@ -37,6 +39,12 @@ public class HuellaMenuController {
 
     @FXML
     private TableColumn<Huella, String> unitColumn;
+
+    @FXML
+    private ImageView flechaIzquierda;
+
+    @FXML
+    private ImageView agregarArchivo;
 
     private HuellaService huellaService;
 
@@ -89,6 +97,20 @@ public class HuellaMenuController {
             }
         }
     }
+
+    @FXML
+    private void switchToInicioView() {
+        Stage stage = (Stage) flechaIzquierda.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/InicioView.fxml");
+    }
+
+    @FXML
+    private void switchToAddHuellaView() {
+        Stage stage = (Stage) agregarArchivo.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/AddHuellaView.fxml");
+    }
+
+
     @FXML
     private void infoAlertDelete() {
         Alertas.showInfoAlert("Huella eliminada", "Informacion General", "Para eliminar una huella " +

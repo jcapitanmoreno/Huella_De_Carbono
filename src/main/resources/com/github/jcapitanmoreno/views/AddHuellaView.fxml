@@ -2,27 +2,36 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.DatePicker?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.AddHuellaController">
+<AnchorPane prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.AddHuellaController">
 
     <children>
-        <Label layoutX="50.0" layoutY="50.0" text="Valor:" />
-        <TextField fx:id="valorField" layoutX="150.0" layoutY="50.0" />
+        <!-- Etiquetas alineadas a la izquierda -->
+        <Label layoutX="200.0" layoutY="146.0" text="Actividad:" />
+        <Label layoutX="200.0" layoutY="186.0" text="Unidad:" />
+        <Label layoutX="200.0" layoutY="228.0" text="Valor:" />
+        <Label layoutX="200.0" layoutY="271.0" text="Fecha:" />
 
-        <Label layoutX="50.0" layoutY="100.0" text="Unidad:" />
-        <TextField fx:id="unidadField" layoutX="150.0" layoutY="100.0" editable="false" />
+        <!-- Campos alineados a la derecha -->
+        <ComboBox fx:id="actividadComboBox" layoutX="300.0" layoutY="142.0" prefWidth="200.0" onAction="#handleActividadChange" />
+        <TextField fx:id="unidadField" editable="false" layoutX="300.0" layoutY="182.0" prefWidth="200.0" />
+        <TextField fx:id="valorField" layoutX="300.0" layoutY="224.0" prefWidth="200.0" />
+        <DatePicker fx:id="fechaPicker" layoutX="300.0" layoutY="267.0" prefWidth="200.0" />
 
-        <Label layoutX="50.0" layoutY="150.0" text="Fecha:" />
-        <DatePicker fx:id="fechaPicker" layoutX="150.0" layoutY="150.0" />
+        <!-- Botón centrado debajo de los campos -->
+        <Button layoutX="270.0" layoutY="340.0" prefWidth="160.0" onAction="#handleAddHuella" text="Añadir Huella" />
 
-        <Label layoutX="50.0" layoutY="200.0" text="Actividad:" />
-        <ComboBox fx:id="actividadComboBox" layoutX="150.0" layoutY="200.0" onAction="#handleActividadChange" />
-
-        <Button layoutX="150.0" layoutY="250.0" onAction="#handleAddHuella" text="Añadir Huella" />
-        <Button layoutX="24.0" layoutY="354.0" mnemonicParsing="false" text="volver" />
+        <!-- Flecha para regresar alineada a la izquierda -->
+        <ImageView fx:id="flechaIzquierda" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="390.0" onMouseClicked="#switchToHuellaMenuView" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@img/flecha-izquierda.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>

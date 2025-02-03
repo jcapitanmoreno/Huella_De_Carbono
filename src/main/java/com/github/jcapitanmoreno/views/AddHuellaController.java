@@ -5,6 +5,7 @@ import com.github.jcapitanmoreno.entities.Huella;
 import com.github.jcapitanmoreno.services.ActividadService;
 import com.github.jcapitanmoreno.services.HuellaService;
 import com.github.jcapitanmoreno.utils.Alertas;
+import com.github.jcapitanmoreno.utils.ChangeScene;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -31,6 +34,9 @@ public class AddHuellaController {
 
     @FXML
     private DatePicker fechaPicker;
+
+    @FXML
+    private ImageView flechaIzquierda;
 
     private HuellaService huellaService;
     private ActividadService actividadService;
@@ -118,5 +124,10 @@ public class AddHuellaController {
             e.printStackTrace();
             Alertas.showErrorAlert("Error", "Error 017", "No se pudo añadir la huella.");
         }
+    }
+    @FXML
+    private void switchToHuellaMenuView() {
+        Stage stage = (Stage) flechaIzquierda.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/HuellaMenuView.fxml");
     }
 }

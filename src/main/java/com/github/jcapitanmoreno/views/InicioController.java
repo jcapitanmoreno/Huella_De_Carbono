@@ -42,4 +42,9 @@ public class InicioController {
         Stage stage = (Stage) usuarioLogIn.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/ComparacionHuellaView.fxml");
     }
+    @FXML
+    private void switchToLogInView() {
+        Stage stage = (Stage) usuarioLogIn.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/LogInView.fxml");
+    }
 }

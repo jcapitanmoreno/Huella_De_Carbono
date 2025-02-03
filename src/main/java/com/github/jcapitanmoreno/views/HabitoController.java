@@ -6,6 +6,7 @@ import com.github.jcapitanmoreno.entities.HabitoId;
 import com.github.jcapitanmoreno.services.ActividadService;
 import com.github.jcapitanmoreno.services.HabitoService;
 import com.github.jcapitanmoreno.utils.Alertas;
+import com.github.jcapitanmoreno.utils.ChangeScene;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -13,6 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -32,6 +35,9 @@ public class HabitoController {
 
     @FXML
     private DatePicker fechaPicker;
+
+    @FXML
+    private ImageView flechaIzquierda;
 
     private HabitoService habitoService;
     private ActividadService actividadService;
@@ -108,5 +114,11 @@ public class HabitoController {
             e.printStackTrace();
             Alertas.showErrorAlert("Error", "Error 009", "No se pudo añadir el hábito.");
         }
+    }
+
+    @FXML
+    private void switchToHabitoMenuView() {
+        Stage stage = (Stage) flechaIzquierda.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/HabitoMenuView.fxml");
     }
 }
