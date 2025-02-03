@@ -3,6 +3,7 @@ package com.github.jcapitanmoreno.views;
 import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.UsuarioService;
 import com.github.jcapitanmoreno.utils.Alertas;
+import com.github.jcapitanmoreno.utils.ChangeScene;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,7 +67,7 @@ public class LogInController {
             if (usuario != null) {
                 UsuarioSingleton.get_Instance().login(usuario);
                 Alertas.showInfoAlert("Login Exitoso", "Una EcoBienvenida", "Bienvenido " + usuario.getNombre());
-                changeScene("ComparacionHuellaView.fxml");
+                changeScene("InicioView.fxml");
             } else {
                 Alertas.showErrorAlert("Error de Login", "Correo o contraseña incorrectos.", "Correo o contraseña incorrectos.");
             }
@@ -76,12 +77,7 @@ public class LogInController {
     }
 
     private void changeScene(String fxml) {
-        try {
-            Stage stage = (Stage) usuarioLogIn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource(fxml));
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) usuarioLogIn.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/" + fxml);
     }
 }
