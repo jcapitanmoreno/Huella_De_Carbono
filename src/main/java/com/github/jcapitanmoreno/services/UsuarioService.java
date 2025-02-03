@@ -52,4 +52,11 @@ public class UsuarioService {
         }
         return usuarioDao.getUsuarioByEmailAndPassword(email, password);
     }
+
+    public Usuario findUsuarioByEmail(String email) throws Exception {
+        if (email == null || email.isEmpty()) {
+            throw new Exception("El correo no puede estar vacío");
+        }
+        return usuarioDao.findUsuarioByEmail(email);
+    }
 }
