@@ -6,36 +6,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.InicioController">
    <children>
-      <Button layoutX="304.0" layoutY="411.0" mnemonicParsing="false" text="Cerrar Session" />
-      <ImageView fitHeight="98.0" fitWidth="100.0" layoutX="531.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="usuarioLogIn" layoutX="304.0" layoutY="411.0" mnemonicParsing="false" text="Cerrar Sesión" />      <ImageView fitHeight="98.0" fitWidth="100.0" layoutX="531.0" layoutY="282.0" onMouseClicked="#switchToHuellaMenuView" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/co2.png" />
+            <Image url="@img/Co2_change.png" />
          </image>
       </ImageView>
       <Text layoutX="525.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añade aqui tu huella" />
-      <ImageView fitHeight="98.0" fitWidth="98.0" layoutX="55.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="98.0" layoutX="55.0" layoutY="282.0" onMouseClicked="#switchToHabitoMenuView" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/arrow-circle.png" />
+            <Image url="@img/refresh.png" />
          </image>
       </ImageView>
       <Text layoutX="43.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añade aqui tus habitos" />
-      <ImageView fitHeight="113.0" fitWidth="83.0" layoutX="308.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="113.0" fitWidth="83.0" layoutX="308.0" layoutY="206.0" onMouseClicked="#switchToUserProfileView" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/user.png" />
+            <Image url="@img/user%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="122.0" layoutX="55.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="122.0" layoutX="55.0" layoutY="141.0" onMouseClicked="#switchToComparacionHuellaView" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/voter.png" />
+            <Image url="@img/compare.png" />
          </image>
       </ImageView>
       <Text layoutX="55.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compara tu impacto con otros usuarios" wrappingWidth="109.341796875" />
-      <ImageView fitHeight="98.0" fitWidth="109.0" layoutX="531.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="109.0" layoutX="531.0" layoutY="141.0" onMouseClicked="#switchToRecomendacionesView" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/good-business.png" />
+            <Image url="@img/good-business%20(1).png" />
          </image>
       </ImageView>
       <Text layoutX="504.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recomendaciones generales" />

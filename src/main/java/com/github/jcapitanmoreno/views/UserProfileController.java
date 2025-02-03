@@ -7,12 +7,14 @@ import com.github.jcapitanmoreno.services.HabitoService;
 import com.github.jcapitanmoreno.services.HuellaService;
 import com.github.jcapitanmoreno.services.UsuarioService;
 import com.github.jcapitanmoreno.utils.Alertas;
+import com.github.jcapitanmoreno.utils.ChangeScene;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class UserProfileController {
 
@@ -131,10 +133,37 @@ public class UserProfileController {
             }
         }
     }
+
     @FXML
-    private void showInfoAlert(){
-        Alertas.showInfoAlert("Información", "Información General", "Esta es la vista de perfil de usuario," +
-                " aquí puedes ver tus datos personales, tus huellas y hábitos." +
-                " Puedes cambiar entre huellas y hábitos con el botón de la parte inferior derecha.");
+    private void switchToInicioView() {
+        Stage stage = (Stage) nameField.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/InicioView.fxml");
+    }
+
+
+    @FXML
+    private void showInfoAlert() {
+        Alertas.showInfoAlert("Información", "Información General",
+                "Esta es la vista de perfil de usuario,\n" +
+                        "aquí puedes ver tus datos personales,\n" +
+                        "tus huellas y hábitos.\n" +
+                        "Puedes cambiar entre huellas y hábitos\n" +
+                        "con el botón de la parte inferior derecha.");
+    }
+
+    @FXML
+    private void showInfoTable() {
+        Alertas.showInfoAlert("Información", "Información de la tabla",
+                "En esta tabla puedes ver tus huellas y hábitos.\n" +
+                        "Puedes cambiar entre huellas y hábitos\n" +
+                        "con el botón de la parte inferior derecha.");
+    }
+
+    @FXML
+    private void showInfoUpdate() {
+        Alertas.showInfoAlert("Información", "Información de la actualización",
+                "En esta sección puedes actualizar tu nombre.\n" +
+                        "Para ello, escribe tu nuevo nombre en el campo de texto\n" +
+                        "y pulsa la tecla 'ENTER'.");
     }
 }
