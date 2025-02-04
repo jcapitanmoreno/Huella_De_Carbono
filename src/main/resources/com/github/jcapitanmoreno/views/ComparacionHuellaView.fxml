@@ -4,15 +4,13 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.ComparacionHuellaController">
-    <Label layoutX="256.0" layoutY="24.0" text="Comparación de Huella de Carbono" />
-    <ComboBox fx:id="timePeriodComboBox" layoutX="275.0" layoutY="56.0" prefWidth="150.0" />
-    <BarChart fx:id="barChart" layoutX="119.0" layoutY="95.0" prefHeight="270.0" prefWidth="463.0" style="-fx-border-color: black;">
+    <ComboBox fx:id="timePeriodComboBox" layoutX="276.0" layoutY="112.0" prefWidth="150.0" />
+    <BarChart fx:id="barChart" layoutX="158.0" layoutY="154.0" prefHeight="225.0" prefWidth="386.0" style="-fx-border-color: black;">
         <xAxis>
             <CategoryAxis label="Categoría" prefWidth="305.0" />
         </xAxis>
@@ -25,4 +23,9 @@
             <Image url="@img/flecha-izquierda.png" />
         </image>
     </ImageView>
+   <ImageView fitHeight="121.0" fitWidth="386.0" layoutX="157.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@img/Tu%20impacto.png" />
+      </image>
+   </ImageView>
 </AnchorPane>

@@ -3,6 +3,7 @@ package com.github.jcapitanmoreno.views;
 import com.github.jcapitanmoreno.entities.Habito;
 import com.github.jcapitanmoreno.entities.Usuario;
 import com.github.jcapitanmoreno.services.HabitoService;
+import com.github.jcapitanmoreno.utils.Alertas;
 import com.github.jcapitanmoreno.utils.ChangeScene;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.beans.property.SimpleStringProperty;
@@ -84,5 +85,10 @@ public class HabitoMenuController {
     private void switchToAddHabitoView() {
         Stage stage = (Stage) agregarArchivo.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/AddHabitoView.fxml");
+    }
+
+    @FXML
+    private void showInfoDelete() {
+        Alertas.showInfoAlert("Eliminar Hábito", "Eliminar Hábito", "Para eliminar un hábito, selecciónelo de la tabla y haga clic en el icono de la papelera.");
     }
 }

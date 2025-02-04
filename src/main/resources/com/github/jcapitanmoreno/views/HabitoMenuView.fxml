@@ -30,4 +30,14 @@
             <Image url="@img/agregar-archivo.png" />
         </image>
     </ImageView>
+   <ImageView fitHeight="143.0" fitWidth="433.0" layoutX="134.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@img/Tus%20Habitos.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="301.0" layoutY="348.0" onMouseClicked="#showInfoDelete" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@img/informacion.png" />
+      </image>
+   </ImageView>
 </AnchorPane>
