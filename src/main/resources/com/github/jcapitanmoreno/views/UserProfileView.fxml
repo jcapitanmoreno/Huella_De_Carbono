@@ -48,9 +48,9 @@
          <Image url="@img/tu%20perfil.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="49.0" fitWidth="53.0" layoutX="344.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@img/cloud-computing.png" />
-      </image>
-   </ImageView>
+    <ImageView fitHeight="49.0" fitWidth="53.0" layoutX="344.0" layoutY="402.0" onMouseClicked="#handleDownloadReport" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@img/cloud-computing.png" />
+        </image>
+    </ImageView>
 </AnchorPane>
