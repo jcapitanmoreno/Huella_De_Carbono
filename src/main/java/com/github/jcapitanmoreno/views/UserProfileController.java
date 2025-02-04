@@ -8,6 +8,7 @@ import com.github.jcapitanmoreno.services.HuellaService;
 import com.github.jcapitanmoreno.services.UsuarioService;
 import com.github.jcapitanmoreno.utils.Alertas;
 import com.github.jcapitanmoreno.utils.ChangeScene;
+import com.github.jcapitanmoreno.utils.InformeUtils;
 import com.github.jcapitanmoreno.utils.UsuarioSingleton;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -15,6 +16,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class UserProfileController {
 
@@ -130,6 +133,21 @@ public class UserProfileController {
                 usuarioService.updateUsuario(usuario);
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    private void handleDownloadReport() {
+        Usuario usuario = UsuarioSingleton.get_Instance().getPlayerLoged();
+        if (usuario != null) {
+            InformeUtils informeUtils = new InformeUtils();
+            try {
+                informeUtils.generarInforme(usuario, (Stage) nameField.getScene().getWindow());
+                Alertas.showInfoAlert("Informe Generado", "El informe se ha generado correctamente.", "El informe se ha guardado en la ubicación seleccionada.");
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alertas.showErrorAlert("Error", "No se pudo generar el informe.", e.getMessage());
             }
         }
     }

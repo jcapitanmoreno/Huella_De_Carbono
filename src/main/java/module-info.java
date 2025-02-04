@@ -5,6 +5,8 @@ module com.github.jcapitanmoreno {
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires java.sql;
+    requires kernel;
+    requires layout;
 
     opens com.github.jcapitanmoreno to javafx.fxml;
     exports com.github.jcapitanmoreno;
