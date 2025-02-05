@@ -50,4 +50,8 @@ public class HuellaService {
     public Map<String, BigDecimal> getMediaHuellasPorCategoria(String period) {
         return huellaDao.getMediaHuellasPorCategoria(period);
     }
+
+    public List<Object[]> getHuellasConImpactoByUsuario(int usuarioId) {
+        return huellaDao.getHuellasConImpactoByUsuario(usuarioId);
+    }
 }

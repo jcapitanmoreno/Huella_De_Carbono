@@ -1,0 +1,74 @@
+/* Estilo general */
+.root {
+    -fx-background-color: #e8f5e9; /* Verde claro, asociado a la ecología */
+    -fx-font-family: "Arial";
+}
+
+/* Estilo para los TextField */
+.text-field {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #388e3c;
+    -fx-border-width: 1;
+    -fx-padding: 5;
+}
+
+.text-field:focused {
+    -fx-border-color: #2e7d32;
+    -fx-background-color: #ffffff;
+}
+
+/* Estilo para los botones */
+.button {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 8 15;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #388e3c;
+}
+
+/* Estilo para las tablas */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #388e3c;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #4caf50;
+}
+
+.table-view .column-header {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #a5d6a7;
+}
+
+/* Estilo para imágenes con funcionalidad */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(56, 142, 60, 0.7), 10, 0.5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.image-view:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+/* Estilo para los textos */
+.text {
+    -fx-fill: #2e7d32;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

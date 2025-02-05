@@ -18,20 +18,6 @@ public class HabitoDao {
         session.close();
     }
 
-    public Habito getHabito(HabitoId id) {
-        Session session = Connection.getInstance().getSessionFactory();
-        Habito habito = session.get(Habito.class, id);
-        session.close();
-        return habito;
-    }
-
-    public List<Habito> getAllHabitos() {
-        Session session = Connection.getInstance().getSessionFactory();
-        List<Habito> habitos = session.createQuery("from Habito", Habito.class).list();
-        session.close();
-        return habitos;
-    }
-
     public void updateHabito(Habito habito) {
         Session session = Connection.getInstance().getSessionFactory();
         Transaction transaction = session.beginTransaction();

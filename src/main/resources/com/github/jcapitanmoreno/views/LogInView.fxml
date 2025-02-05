@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.LogInController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.LogInController">
    <children>
       <ImageView fitHeight="135.0" fitWidth="134.0" layoutX="284.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="284.0" AnchorPane.rightAnchor="283.3203125">
          <image>
@@ -27,7 +27,7 @@
       <Text layoutX="417.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
       <Text layoutX="417.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo" />
       <Text layoutX="417.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
-      <Button layoutX="149.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleLogin" text="Iniciar" />
-      <Button layoutX="466.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleRegister" text="Registrar" />
+      <Button layoutX="135.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleLogin" text="Iniciar" />
+      <Button layoutX="443.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleRegister" text="Registrar" />
    </children>
 </AnchorPane>

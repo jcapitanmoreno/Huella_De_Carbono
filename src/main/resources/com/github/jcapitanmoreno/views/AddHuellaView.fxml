@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.AddHuellaController">
+<AnchorPane prefHeight="460.0" prefWidth="700.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.AddHuellaController">
 
     <children>
         <!-- Etiquetas alineadas a la izquierda -->
@@ -19,13 +19,13 @@
         <Label layoutX="200.0" layoutY="271.0" text="Fecha:" />
 
         <!-- Campos alineados a la derecha -->
-        <ComboBox fx:id="actividadComboBox" layoutX="300.0" layoutY="142.0" prefWidth="200.0" onAction="#handleActividadChange" />
+        <ComboBox fx:id="actividadComboBox" layoutX="300.0" layoutY="142.0" onAction="#handleActividadChange" prefWidth="200.0" />
         <TextField fx:id="unidadField" editable="false" layoutX="300.0" layoutY="182.0" prefWidth="200.0" />
         <TextField fx:id="valorField" layoutX="300.0" layoutY="224.0" prefWidth="200.0" />
         <DatePicker fx:id="fechaPicker" layoutX="300.0" layoutY="267.0" prefWidth="200.0" />
 
         <!-- Botón centrado debajo de los campos -->
-        <Button layoutX="270.0" layoutY="340.0" prefWidth="160.0" onAction="#handleAddHuella" text="Añadir Huella" />
+        <Button layoutX="270.0" layoutY="340.0" onAction="#handleAddHuella" prefWidth="160.0" text="Añadir Huella" />
 
         <!-- Flecha para regresar alineada a la izquierda -->
         <ImageView fx:id="flechaIzquierda" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="390.0" onMouseClicked="#switchToHuellaMenuView" pickOnBounds="true" preserveRatio="true">
@@ -33,5 +33,10 @@
                 <Image url="@img/flecha-izquierda.png" />
             </image>
         </ImageView>
+      <ImageView fitHeight="118.0" fitWidth="415.0" layoutX="143.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/añadir%20huella.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
