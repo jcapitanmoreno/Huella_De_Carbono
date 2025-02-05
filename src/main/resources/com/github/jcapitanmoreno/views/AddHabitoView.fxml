@@ -9,26 +9,31 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.HabitoController">
+<AnchorPane prefHeight="460.0" prefWidth="700.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.HabitoController">
 
     <children>
-        <Label layoutX="213.0" layoutY="118.0" text="Tipo:" />
-        <ComboBox fx:id="tipoComboBox" layoutX="313.0" layoutY="118.0" />
+        <Label layoutX="213.0" layoutY="193.0" text="Tipo:" />
+        <ComboBox fx:id="tipoComboBox" layoutX="313.0" layoutY="193.0" />
 
-        <Label layoutX="213.0" layoutY="168.0" text="Frecuencia:" />
-        <TextField fx:id="frecuenciaField" layoutX="313.0" layoutY="168.0" />
+        <Label layoutX="213.0" layoutY="243.0" text="Frecuencia:" />
+        <TextField fx:id="frecuenciaField" layoutX="313.0" layoutY="243.0" />
 
-        <Label layoutX="213.0" layoutY="218.0" text="Fecha:" />
-        <DatePicker fx:id="fechaPicker" layoutX="313.0" layoutY="218.0" />
+        <Label layoutX="213.0" layoutY="293.0" text="Fecha:" />
+        <DatePicker fx:id="fechaPicker" layoutX="313.0" layoutY="293.0" />
 
-        <Label layoutX="213.0" layoutY="268.0" text="Actividad:" />
-        <ComboBox fx:id="actividadComboBox" layoutX="313.0" layoutY="268.0" />
+        <Label layoutX="213.0" layoutY="147.0" text="Actividad:" />
+        <ComboBox fx:id="actividadComboBox" layoutX="313.0" layoutY="147.0" />
 
-        <Button layoutX="313.0" layoutY="318.0" onAction="#handleAddHabito" text="Añadir Hábito" />
+        <Button layoutX="313.0" layoutY="350.0" onAction="#handleAddHabito" text="Añadir Hábito" />
         <ImageView fx:id="flechaIzquierda" fitHeight="45.0" fitWidth="45.0" layoutX="28.0" layoutY="389.0" onMouseClicked="#switchToHabitoMenuView" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@img/flecha-izquierda.png" />
             </image>
         </ImageView>
+      <ImageView fitHeight="159.0" fitWidth="402.0" layoutX="137.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/añadir%20habito.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

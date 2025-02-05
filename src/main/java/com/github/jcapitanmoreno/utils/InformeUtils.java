@@ -55,7 +55,7 @@ public class InformeUtils {
 
     private void generarInformePDF(Usuario usuario, File file) throws IOException {
         List<Habito> habitos = habitoService.getHabitosByUsuario(usuario.getId());
-        List<Huella> huellas = huellaService.getHuellasByUsuario(usuario.getId());
+        List<Object[]> huellasConImpacto = huellaService.getHuellasConImpactoByUsuario(usuario.getId());
         List<Recomendacion> recomendaciones = habitoService.getRecomendacionesByUsuario(usuario.getId());
 
         PdfWriter writer = new PdfWriter(file);
@@ -85,12 +85,11 @@ public class InformeUtils {
         huellasTable.addCell(new Cell().add(new Paragraph("Valor")));
         huellasTable.addCell(new Cell().add(new Paragraph("Unidad")));
         huellasTable.addCell(new Cell().add(new Paragraph("Impacto de Huella de Carbono")));
-        for (Huella huella : huellas) {
-            BigDecimal impacto = huella.getValor().multiply(huella.getIdActividad().getIdCategoria().getFactorEmision());
-            huellasTable.addCell(new Cell().add(new Paragraph(huella.getIdActividad().getNombre())));
-            huellasTable.addCell(new Cell().add(new Paragraph(huella.getValor().toString())));
-            huellasTable.addCell(new Cell().add(new Paragraph(huella.getUnidad())));
-            huellasTable.addCell(new Cell().add(new Paragraph(impacto.toString())));
+        for (Object[] huella : huellasConImpacto) {
+            huellasTable.addCell(new Cell().add(new Paragraph((String) huella[0])));
+            huellasTable.addCell(new Cell().add(new Paragraph(huella[1].toString())));
+            huellasTable.addCell(new Cell().add(new Paragraph((String) huella[2])));
+            huellasTable.addCell(new Cell().add(new Paragraph(huella[3].toString())));
         }
         document.add(huellasTable);
 

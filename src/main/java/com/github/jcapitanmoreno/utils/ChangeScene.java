@@ -10,7 +10,6 @@ import java.io.IOException;
 public class ChangeScene {
 
 
-    // aun tengo que probarlo porque me da fallos, aun se queda como esta
     public static void changeScene(Stage stage, String fxml) {
         try {
             Parent root = FXMLLoader.load(ChangeScene.class.getResource(fxml));

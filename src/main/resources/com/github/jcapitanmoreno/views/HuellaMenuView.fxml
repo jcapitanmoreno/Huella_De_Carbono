@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.HuellaMenuController">
+<AnchorPane prefHeight="460.0" prefWidth="700.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.HuellaMenuController">
     <children>
         <TableView fx:id="footprintTable" editable="true" layoutX="68.0" layoutY="126.0" prefHeight="208.0" prefWidth="565.0">
             <columns>
@@ -39,6 +39,11 @@
       <ImageView fitHeight="19.0" fitWidth="28.0" layoutX="46.0" layoutY="126.0" onMouseClicked="#infoAlertUpdate" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/informacion.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="142.0" fitWidth="435.0" layoutX="133.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/Tus%20huellas.png" />
          </image>
       </ImageView>
     </children>

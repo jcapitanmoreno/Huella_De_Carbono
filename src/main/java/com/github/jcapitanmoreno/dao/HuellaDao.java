@@ -22,20 +22,6 @@ public class HuellaDao {
         session.close();
     }
 
-    public Huella getHuella(int id) {
-        Session session = Connection.getInstance().getSessionFactory();
-        Huella huella = session.get(Huella.class, id);
-        session.close();
-        return huella;
-    }
-
-    public List<Huella> getAllHuellas() {
-        Session session = Connection.getInstance().getSessionFactory();
-        List<Huella> huellas = session.createQuery("from Huella", Huella.class).list();
-        session.close();
-        return huellas;
-    }
-
     public void updateHuella(Huella huella) {
         Session session = Connection.getInstance().getSessionFactory();
         Transaction transaction = session.beginTransaction();
@@ -62,37 +48,7 @@ public class HuellaDao {
                     .list();
         }
     }
-    public Map<String, BigDecimal> getHuellaUsuarioPorCategoria(int usuarioId) {
-        try (Session session = Connection.getInstance().getSessionFactory()) {
-            List<Object[]> results = session.createQuery(
-                            "SELECT a.idCategoria.nombre, SUM(h.valor * a.idCategoria.factorEmision) " +
-                                    "FROM Huella h JOIN h.idActividad a " +
-                                    "WHERE h.idUsuario.id = :usuarioId " +
-                                    "GROUP BY a.idCategoria.nombre", Object[].class)
-                    .setParameter("usuarioId", usuarioId)
-                    .list();
 
-            return results.stream().collect(Collectors.toMap(
-                    result -> (String) result[0],
-                    result -> (BigDecimal) result[1]
-            ));
-        }
-    }
-
-    public Map<String, BigDecimal> getMediaHuellasPorCategoria() {
-        try (Session session = Connection.getInstance().getSessionFactory()) {
-            List<Object[]> results = session.createQuery(
-                            "SELECT a.idCategoria.nombre, AVG(h.valor * a.idCategoria.factorEmision) " +
-                                    "FROM Huella h JOIN h.idActividad a " +
-                                    "GROUP BY a.idCategoria.nombre", Object[].class)
-                    .list();
-
-            return results.stream().collect(Collectors.toMap(
-                    result -> (String) result[0],
-                    result -> BigDecimal.valueOf((Double) result[1])
-            ));
-        }
-    }
 
     public Map<String, BigDecimal> getHuellaUsuarioPorCategoria(int usuarioId, String period) {
         try (Session session = Connection.getInstance().getSessionFactory()) {
@@ -126,6 +82,16 @@ public class HuellaDao {
                     result -> (String) result[0],
                     result -> BigDecimal.valueOf((Double) result[1])
             ));
+        }
+    }
+
+    public List<Object[]> getHuellasConImpactoByUsuario(int usuarioId) {
+        try (Session session = Connection.getInstance().getSessionFactory()) {
+            return session.createQuery(
+                            "SELECT h.idActividad.nombre, h.valor, h.unidad, (h.valor * h.idActividad.idCategoria.factorEmision) " +
+                                    "FROM Huella h WHERE h.idUsuario.id = :usuarioId", Object[].class)
+                    .setParameter("usuarioId", usuarioId)
+                    .list();
         }
     }
 

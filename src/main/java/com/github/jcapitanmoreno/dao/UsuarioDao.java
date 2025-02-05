@@ -45,15 +45,6 @@ public class UsuarioDao {
         session.close();
     }
 
-    public Usuario getUsuarioByEmailAndPassword(String email, String password) {
-        try (Session session = Connection.getInstance().getSessionFactory()) {
-            return session.createQuery("FROM Usuario WHERE email = :email AND contraseña = :password", Usuario.class)
-                    .setParameter("email", email)
-                    .setParameter("password", password)
-                    .uniqueResult();
-        }
-    }
-
     public Usuario findUsuarioByEmail(String email) {
         try (Session session = Connection.getInstance().getSessionFactory()) {
             return session.createQuery("FROM Usuario WHERE email = :email", Usuario.class)
