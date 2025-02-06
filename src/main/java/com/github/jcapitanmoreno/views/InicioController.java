@@ -47,4 +47,9 @@ public class InicioController {
         Stage stage = (Stage) usuarioLogIn.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/LogInView.fxml");
     }
+    @FXML
+    private void switchToAyudaView() {
+        Stage stage = (Stage) usuarioLogIn.getScene().getWindow();
+        ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/EnviarCorreoView.fxml");
+    }
 }
