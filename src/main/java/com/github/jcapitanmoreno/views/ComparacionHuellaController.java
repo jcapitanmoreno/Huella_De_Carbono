@@ -54,9 +54,6 @@ public class ComparacionHuellaController {
         impactColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getValue()));
 
         loadComparacion();
-
-        actividadColumn.setCellValueFactory(new PropertyValueFactory<>("actividad"));
-        impactoColumn.setCellValueFactory(new PropertyValueFactory<>("impacto"));
     }
 
     private void loadComparacion() {
