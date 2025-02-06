@@ -83,6 +83,14 @@ public class HabitoController {
                 return;
             }
 
+            List<Habito> habitosExistentes = habitoService.getHabitosByUsuario(UsuarioSingleton.get_Instance().getPlayerLoged().getId());
+            for (Habito habito : habitosExistentes) {
+                if (habito.getIdActividad().getNombre().equals(actividad.getNombre())) {
+                    Alertas.showErrorAlert("Error", "Error 010", "Ya existe un hábito con la misma actividad.");
+                    return;
+                }
+            }
+
             LocalDate fecha = fechaPicker.getValue();
             if (fecha == null) {
                 Alertas.showErrorAlert("Error", "Error 007", "La fecha es obligatoria.");
