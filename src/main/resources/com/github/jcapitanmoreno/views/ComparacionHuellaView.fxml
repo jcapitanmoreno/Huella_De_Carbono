@@ -8,6 +8,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <AnchorPane prefHeight="460.0" prefWidth="700.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.jcapitanmoreno.views.ComparacionHuellaController">
     <ComboBox fx:id="timePeriodComboBox" layoutX="276.0" layoutY="112.0" prefWidth="150.0" />
     <BarChart fx:id="barChart" layoutX="158.0" layoutY="154.0" prefHeight="225.0" prefWidth="386.0" style="-fx-border-color: black;">
@@ -18,14 +21,21 @@
             <NumberAxis label="Huella de Carbono" />
         </yAxis>
     </BarChart>
+    <TableView fx:id="impactTable" layoutX="158.0" layoutY="154.0" prefHeight="225.0" prefWidth="386.0" visible="false">
+        <columns>
+            <TableColumn fx:id="actividadColumn" text="Actividad" />
+            <TableColumn fx:id="impactoColumn" text="Impacto" />
+        </columns>
+    </TableView>
+    <Button fx:id="switchViewButton" layoutX="276.0" layoutY="400.0" text="Cambiar Vista" onAction="#switchView" />
     <ImageView fx:id="flechaIzquierda" fitHeight="45.0" fitWidth="45.0" layoutX="29.0" layoutY="389.0" onMouseClicked="#switchToInicioView" pickOnBounds="true" preserveRatio="true">
         <image>
             <Image url="@img/flecha-izquierda.png" />
         </image>
     </ImageView>
-   <ImageView fitHeight="121.0" fitWidth="386.0" layoutX="158.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@img/Tu%20impacto.png" />
-      </image>
-   </ImageView>
+    <ImageView fitHeight="121.0" fitWidth="386.0" layoutX="158.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@img/Tu%20impacto.png" />
+        </image>
+    </ImageView>
 </AnchorPane>
