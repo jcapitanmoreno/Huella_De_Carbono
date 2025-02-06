@@ -14,9 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
 
 import java.math.BigDecimal;
 import java.util.AbstractMap;
@@ -35,11 +35,13 @@ public class ComparacionHuellaController {
     private ComboBox<String> timePeriodComboBox;
     @FXML
     private Button toggleViewButton;
+
     @FXML
     private ImageView flechaIzquierda;
 
     private HuellaService huellaService;
     private boolean showingBarChart = true;
+
 
     public void initialize() {
         huellaService = new HuellaService();
@@ -52,6 +54,9 @@ public class ComparacionHuellaController {
         impactColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getValue()));
 
         loadComparacion();
+
+        actividadColumn.setCellValueFactory(new PropertyValueFactory<>("actividad"));
+        impactoColumn.setCellValueFactory(new PropertyValueFactory<>("impacto"));
     }
 
     private void loadComparacion() {
@@ -94,6 +99,7 @@ public class ComparacionHuellaController {
             impactTable.setItems(impactData);
         }
     }
+
 
     @FXML
     private void toggleView() {
