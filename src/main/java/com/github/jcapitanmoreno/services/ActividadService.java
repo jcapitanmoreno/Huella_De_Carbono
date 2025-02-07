@@ -12,6 +12,11 @@ public class ActividadService {
         actividadDao = new ActividadDao();
     }
 
+    /**
+     * Obtiene todas las actividades.
+     *
+     * @return Lista de actividades.
+     */
     public List<Actividad> getAllActividades() {
 
         return  actividadDao.getAllActividades();

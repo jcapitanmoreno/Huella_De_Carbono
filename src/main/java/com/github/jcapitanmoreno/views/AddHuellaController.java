@@ -46,12 +46,19 @@ public class AddHuellaController {
         actividadService = new ActividadService();
     }
 
+    /**
+     * Inicializa el controlador, configurando el ComboBox de actividades.
+     */
     @FXML
     public void initialize() {
         List<Actividad> actividades = actividadService.getAllActividades();
         actividadComboBox.setItems(FXCollections.observableArrayList(actividades));
     }
 
+
+    /**
+     * Maneja el cambio de actividad en el ComboBox, actualizando el campo de unidad.
+     */
     @FXML
     private void handleActividadChange() {
         Actividad actividad = actividadComboBox.getValue();
@@ -62,6 +69,9 @@ public class AddHuellaController {
         }
     }
 
+    /**
+     * Maneja la adición de una nueva huella, validando los campos y mostrando alertas en caso de error.
+     */
     @FXML
     private void handleAddHuella() {
         try {
@@ -125,6 +135,10 @@ public class AddHuellaController {
             Alertas.showErrorAlert("Error", "Error 017", "No se pudo añadir la huella.");
         }
     }
+
+    /**
+     * Cambia a la vista de menú de huellas.
+     */
     @FXML
     private void switchToHuellaMenuView() {
         Stage stage = (Stage) flechaIzquierda.getScene().getWindow();

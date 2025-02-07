@@ -48,6 +48,9 @@ public class HuellaMenuController {
 
     private HuellaService huellaService;
 
+    /**
+     * Inicializa el controlador, configurando la tabla de huellas.
+     */
     public void initialize() {
         huellaService = new HuellaService();
 
@@ -57,7 +60,9 @@ public class HuellaMenuController {
         unitColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnidad()));
 
 
-
+        /**
+         * Permite editar el valor de la huella en la tabla.
+         */
         valueColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         valueColumn.setOnEditCommit(event -> {
             Huella huella = event.getRowValue();
@@ -76,6 +81,9 @@ public class HuellaMenuController {
         loadFootprintData();
     }
 
+    /**
+     * Carga las huellas del usuario logeado en la tabla.
+     */
     private void loadFootprintData() {
         Usuario usuario = UsuarioSingleton.get_Instance().getPlayerLoged();
         if (usuario != null) {
@@ -84,6 +92,9 @@ public class HuellaMenuController {
         }
     }
 
+    /**
+     * Maneja la eliminación de una huella.
+     */
     @FXML
     private void handleDelete() {
         Huella selectedHuella = footprintTable.getSelectionModel().getSelectedItem();
@@ -98,12 +109,18 @@ public class HuellaMenuController {
         }
     }
 
+    /**
+     * Cambia a la vista de inicio.
+     */
     @FXML
     private void switchToInicioView() {
         Stage stage = (Stage) flechaIzquierda.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/InicioView.fxml");
     }
 
+    /**
+     *  Cambia a la vista de añadir huella.
+     */
     @FXML
     private void switchToAddHuellaView() {
         Stage stage = (Stage) agregarArchivo.getScene().getWindow();
@@ -111,6 +128,9 @@ public class HuellaMenuController {
     }
 
 
+    /**
+     * Muestra información sobre cómo eliminar una huella.
+     */
     @FXML
     private void infoAlertDelete() {
         Alertas.showInfoAlert("Huella eliminada", "Informacion General", "Para eliminar una huella " +
@@ -120,6 +140,9 @@ public class HuellaMenuController {
                 "Recuerda que una vez eliminada no se podra recuperar.");
     }
 
+    /**
+     * Muestra información sobre cómo actualizar una huella.
+     */
     @FXML
     private void infoAlertUpdate() {
         Alertas.showInfoAlert("Huella actualizada", "Informacion General", "Para actualizar una huella " +

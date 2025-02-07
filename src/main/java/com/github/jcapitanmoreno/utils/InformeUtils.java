@@ -32,6 +32,13 @@ public class InformeUtils {
         huellaService = new HuellaService();
     }
 
+    /**
+     * Genera un informe en formato PDF o CSV para un usuario específico.
+     *
+     * @param usuario el usuario para el cual se generará el informe.
+     * @param stage el escenario de la aplicación para mostrar el diálogo de guardado.
+     * @throws IOException si ocurre un error al generar el informe.
+     */
     public void generarInforme(Usuario usuario, Stage stage) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar Informe");
@@ -53,6 +60,13 @@ public class InformeUtils {
         }
     }
 
+    /**
+     * Genera un informe en formato PDF para un usuario específico.
+     *
+     * @param usuario el usuario para el cual se generará el informe.
+     * @param file el archivo donde se guardará el informe.
+     * @throws IOException si ocurre un error al generar el informe.
+     */
     private void generarInformePDF(Usuario usuario, File file) throws IOException {
         List<Habito> habitos = habitoService.getHabitosByUsuario(usuario.getId());
         List<Object[]> huellasConImpacto = huellaService.getHuellasConImpactoByUsuario(usuario.getId());
@@ -101,6 +115,13 @@ public class InformeUtils {
         document.close();
     }
 
+    /**
+     * Genera un informe en formato CSV para un usuario específico.
+     *
+     * @param usuario el usuario para el cual se generará el informe.
+     * @param file el archivo donde se guardará el informe.
+     * @throws IOException si ocurre un error al generar el informe.
+     */
     private void generarInformeCSV(Usuario usuario, File file) throws IOException {
         List<Habito> habitos = habitoService.getHabitosByUsuario(usuario.getId());
         List<Huella> huellas = huellaService.getHuellasByUsuario(usuario.getId());
@@ -128,6 +149,12 @@ public class InformeUtils {
         }
     }
 
+    /**
+     * Obtiene la extensión de un archivo.
+     *
+     * @param file el archivo del cual se obtendrá la extensión.
+     * @return la extensión del archivo.
+     */
     private String getFileExtension(File file) {
         String fileName = file.getName();
         int dotIndex = fileName.lastIndexOf('.');

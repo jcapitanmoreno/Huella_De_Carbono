@@ -24,12 +24,17 @@ public class RecomendacionesController {
 
     private HabitoService habitoService;
 
-
+    /**
+     * Inicializa el controlador, cargando las recomendaciones del usuario logeado.
+     */
     public void initialize() {
         habitoService = new HabitoService();
         loadRecomendaciones();
     }
 
+    /**
+     * Carga las recomendaciones del usuario logeado en la lista.
+     */
     private void loadRecomendaciones() {
         int usuarioId = UsuarioSingleton.get_Instance().getPlayerLoged().getId();
         List<Recomendacion> recomendaciones = habitoService.getRecomendacionesByUsuario(usuarioId);
@@ -39,6 +44,10 @@ public class RecomendacionesController {
         );
         recomendacionesList.setItems(items);
     }
+
+    /**
+     *  Cambia a la vista de inicio.
+     */
     @FXML
     private void switchToInicioView() {
         Stage stage = (Stage) flechaIzquierda.getScene().getWindow();

@@ -20,6 +20,9 @@ public class EnviarCorreoController {
 
     private EmailService emailService = new EmailService();
 
+    /**
+     * Maneja el envío de un correo electrónico a la administración.
+     */
     @FXML
     private void handleEnviarCorreo() {
         String correo = correoField.getText();
