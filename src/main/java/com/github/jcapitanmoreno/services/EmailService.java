@@ -11,6 +11,15 @@ public class EmailService {
     private final String username = "ayudagamehub@gmail.com";
     private final String password = "ffnt odps fuqc tnbj";
 
+    /**
+     * Envía un correo electrónico.
+     *
+     * @param correoUsuario el correo del usuario.
+     * @param asunto el asunto del correo.
+     * @param mensaje el mensaje del correo.
+     * @return true si el correo fue enviado exitosamente, false en caso contrario.
+     * @throws Exception si el correo del usuario está vacío.
+     */
     public boolean enviarCorreo(String correoUsuario, String asunto, String mensaje) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

@@ -38,6 +38,9 @@ public class LogInController {
         usuarioService = new UsuarioService();
     }
 
+    /**
+     * Maneja el registro de un nuevo usuario.
+     */
     @FXML
     private void handleRegister() {
         String nombre = usuarioRegister.getText();
@@ -80,6 +83,9 @@ public class LogInController {
         }
     }
 
+    /**
+     * Maneja el inicio de sesión de un usuario.
+     */
     @FXML
     private void handleLogin() {
         String email = usuarioLogIn.getText();
@@ -111,11 +117,20 @@ public class LogInController {
         }
     }
 
+    /**
+     * Cambia a la vista de inicio.
+     */
     private void changeScene(String fxml) {
         Stage stage = (Stage) usuarioLogIn.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/" + fxml);
     }
 
+    /**
+     * Valida el formato de un correo electrónico.
+     *
+     * @param email el correo electrónico a validar.
+     * @return true si el correo es válido, false en caso contrario.
+     */
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailRegex);

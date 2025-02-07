@@ -42,7 +42,9 @@ public class ComparacionHuellaController {
     private HuellaService huellaService;
     private boolean showingBarChart = true;
 
-
+    /**
+     * Inicializa el controlador, configurando el ComboBox de periodos de tiempo y cargando la comparación inicial.
+     */
     public void initialize() {
         huellaService = new HuellaService();
         ObservableList<String> timePeriods = FXCollections.observableArrayList("Semana", "Mes", "Año");
@@ -56,6 +58,9 @@ public class ComparacionHuellaController {
         loadComparacion();
     }
 
+    /**
+     * Carga la comparación de huella de carbono del usuario logeado con la media de la comunidad.
+     */
     private void loadComparacion() {
         int usuarioId = UsuarioSingleton.get_Instance().getPlayerLoged().getId();
         String selectedPeriod = timePeriodComboBox.getValue();
@@ -97,7 +102,9 @@ public class ComparacionHuellaController {
         }
     }
 
-
+    /**
+     * Cambia entre la vista de gráfico de barras y la tabla de impacto.
+     */
     @FXML
     private void toggleView() {
         showingBarChart = !showingBarChart;
@@ -106,6 +113,9 @@ public class ComparacionHuellaController {
         loadComparacion();
     }
 
+    /**
+     * Cambia a la vista de menú de inicio.
+     */
     @FXML
     private void switchToInicioView() {
         Stage stage = (Stage) flechaIzquierda.getScene().getWindow();

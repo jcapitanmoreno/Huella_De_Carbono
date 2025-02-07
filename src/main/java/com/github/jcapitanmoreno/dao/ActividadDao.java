@@ -8,6 +8,11 @@ import java.util.List;
 
 public class ActividadDao {
 
+    /**
+     * Obtiene todas las actividades de la base de datos.
+     *
+     * @return una lista de todas las actividades.
+     */
     public List<Actividad> getAllActividades() {
         Session session = Connection.getInstance().getSessionFactory();;
         List<Actividad> actividades = session.createQuery("from Actividad", Actividad.class).list();

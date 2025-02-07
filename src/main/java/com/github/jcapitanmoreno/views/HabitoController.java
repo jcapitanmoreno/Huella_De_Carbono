@@ -47,6 +47,9 @@ public class HabitoController {
         actividadService = new ActividadService();
     }
 
+    /**
+     * Inicializa el controlador, configurando los ComboBox de tipo y actividad.
+     */
     @FXML
     public void initialize() {
         tipoComboBox.setItems(FXCollections.observableArrayList("diario", "semanal", "mensual", "anual"));
@@ -54,6 +57,9 @@ public class HabitoController {
         actividadComboBox.setItems(FXCollections.observableArrayList(actividades));
     }
 
+    /**
+     * Maneja la adición de un hábito.
+     */
     @FXML
     private void handleAddHabito() {
         try {
@@ -124,6 +130,9 @@ public class HabitoController {
         }
     }
 
+    /**
+     * Cambia a la vista de menú de hábitos.
+     */
     @FXML
     private void switchToHabitoMenuView() {
         Stage stage = (Stage) flechaIzquierda.getScene().getWindow();

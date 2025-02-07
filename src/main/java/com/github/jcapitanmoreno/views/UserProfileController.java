@@ -48,6 +48,9 @@ public class UserProfileController {
 
     private boolean showingHuellas = true;
 
+    /**
+     * Inicializa el controlador, configurando la tabla de huellas y hábitos.
+     */
     public void initialize() {
         usuarioService = new UsuarioService();
         huellaService = new HuellaService();
@@ -99,6 +102,9 @@ public class UserProfileController {
         loadFootprintData();
     }
 
+    /**
+     * Carga los datos del usuario en los campos de texto.
+     */
     private void loadUserData() {
         Usuario usuario = UsuarioSingleton.get_Instance().getPlayerLoged();
         if (usuario != null) {
@@ -107,6 +113,9 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * Carga las huellas o hábitos del usuario logeado en la tabla.
+     */
     private void loadFootprintData() {
         Usuario usuario = UsuarioSingleton.get_Instance().getPlayerLoged();
         if (usuario != null) {
@@ -118,12 +127,18 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * Cambia entre la vista de huellas y hábitos.
+     */
     @FXML
     private void handleChangeView() {
         showingHuellas = !showingHuellas;
         loadFootprintData();
     }
 
+    /**
+     * Actualiza el nombre del usuario.
+     */
     @FXML
     private void updateName() {
         Usuario usuario = UsuarioSingleton.get_Instance().getPlayerLoged();
@@ -137,6 +152,9 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * Descarga un informe de huellas y hábitos del usuario.
+     */
     @FXML
     private void handleDownloadReport() {
         Usuario usuario = UsuarioSingleton.get_Instance().getPlayerLoged();
@@ -152,13 +170,18 @@ public class UserProfileController {
         }
     }
 
+    /**
+     *  Cambia a la vista de inicio.
+     */
     @FXML
     private void switchToInicioView() {
         Stage stage = (Stage) nameField.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/InicioView.fxml");
     }
 
-
+    /**
+     * Muestra información general sobre la vista.
+     */
     @FXML
     private void showInfoAlert() {
         Alertas.showInfoAlert("Información", "Información General",
@@ -169,6 +192,9 @@ public class UserProfileController {
                         "con el botón de la parte inferior derecha.");
     }
 
+    /**
+     * Muestra información sobre la tabla.
+     */
     @FXML
     private void showInfoTable() {
         Alertas.showInfoAlert("Información", "Información de la tabla",
@@ -177,6 +203,9 @@ public class UserProfileController {
                         "con el botón de la parte inferior derecha.");
     }
 
+    /**
+     * Muestra información sobre la actualización del nombre.
+     */
     @FXML
     private void showInfoUpdate() {
         Alertas.showInfoAlert("Información", "Información de la actualización",

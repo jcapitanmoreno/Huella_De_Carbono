@@ -42,6 +42,9 @@ public class HabitoMenuController {
 
     private HabitoService habitoService;
 
+    /**
+     * Inicializa el controlador, configurando la tabla de hábitos.
+     */
     public void initialize() {
         habitoService = new HabitoService();
 
@@ -53,6 +56,9 @@ public class HabitoMenuController {
         loadHabitoData();
     }
 
+    /**
+     * Carga los hábitos del usuario logeado en la tabla.
+     */
     private void loadHabitoData() {
         Usuario usuario = UsuarioSingleton.get_Instance().getPlayerLoged();
         if (usuario != null) {
@@ -61,6 +67,9 @@ public class HabitoMenuController {
         }
     }
 
+    /**
+     * Maneja la eliminación de un hábito.
+     */
     @FXML
     private void handleDelete() {
         Habito selectedHabito = habitoTable.getSelectionModel().getSelectedItem();
@@ -75,18 +84,27 @@ public class HabitoMenuController {
         }
     }
 
+    /**
+     * Cambia a la vista de inicio.
+     */
     @FXML
     private void switchToInicioView() {
         Stage stage = (Stage) flechaIzquierda.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/InicioView.fxml");
     }
 
+    /**
+     * Cambia a la vista de añadir hábito.
+     */
     @FXML
     private void switchToAddHabitoView() {
         Stage stage = (Stage) agregarArchivo.getScene().getWindow();
         ChangeScene.changeScene(stage, "/com/github/jcapitanmoreno/views/AddHabitoView.fxml");
     }
 
+    /**
+     *  Muestra información sobre cómo eliminar un hábito.
+     */
     @FXML
     private void showInfoDelete() {
         Alertas.showInfoAlert("Eliminar Hábito", "Eliminar Hábito", "Para eliminar un hábito, selecciónelo de la tabla y haga clic en el icono de la papelera.");
