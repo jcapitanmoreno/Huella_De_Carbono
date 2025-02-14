@@ -1,15 +1,31 @@
 package com.github.jcapitanmoreno.services;
 
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class EmailService {
 
-    private final String username = "ayudagamehub@gmail.com";
-    private final String password = "ffnt odps fuqc tnbj";
+    private String username;
+    private String password;
+
+    public EmailService() {
+        Properties config = new Properties();
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                System.out.println("error, no se pudo cargar el archivo de configuración");
+                return;
+            }
+            config.load(input);
+            this.username = config.getProperty("smtp.username");
+            this.password = config.getProperty("smtp.password");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     /**
      * Envía un correo electrónico.
